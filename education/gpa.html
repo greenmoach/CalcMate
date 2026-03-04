@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPA Calculator</title>
+    <meta name="description" content="Calculate your GPA (Grade Point Average) quickly and easily. Enter your grades and credit hours to calculate your cumulative GPA.">
+    <meta name="keywords" content="GPA calculator, grade point average calculator, cumulative GPA calculator, college GPA calculator, high school GPA calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/education/gpa.html">
+    <meta property="og:title" content="GPA Calculator">
+    <meta property="og:description" content="Calculate your GPA (Grade Point Average) quickly and easily. Enter your grades and credit hours to calculate your cumulative GPA.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/education/gpa.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "GPA Calculator",
+        "description": "Calculate your GPA (Grade Point Average) quickly and easily. Enter your grades and credit hours to calculate your cumulative GPA.",
+        "url": "http://calculator.sotshau.fun/education/gpa.html",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Righteous', cursive;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 { color: #667eea; text-align: center; margin-bottom: 20px; }
+        .subject-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .subject-row input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+        }
+        .subject-row input:focus { outline: none; border-color: #667eea; }
+        .subject-row button {
+            padding: 12px;
+            background: #e53e3e;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #addSubject {
+            background: #48bb78;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-family: inherit;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        button.calculate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .gpa { font-size: 2.5rem; color: #553c9a; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #553c9a; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>📝 GPA Calculator</h1>
+        <div id="subjects">
+            <div class="subject-row">
+                <input type="number" placeholder="Credits" class="credits" value="3">
+                <input type="number" placeholder="Grade (0-100)" class="grade">
+            </div>
+            <div class="subject-row">
+                <input type="number" placeholder="Credits" class="credits" value="3">
+                <input type="number" placeholder="Grade (0-100)" class="grade">
+            </div>
+        </div>
+        <button id="addSubject" onclick="addSubject()">+ Add Subject</button>
+        <button class="calculate" onclick="calculateGPA()">Calculate GPA</button>
+        <div class="result" id="result">
+            <div class="gpa" id="gpaValue">0.00</div>
+            <div>Grade Point Average</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function addSubject() {
+            const div = document.createElement('div');
+            div.className = 'subject-row';
+            div.innerHTML = '<input type="number" placeholder="Credits" class="credits"><input type="number" placeholder="Grade (0-100)" class="grade"><button onclick="this.parentElement.remove()">×</button>';
+            document.getElementById('subjects').appendChild(div);
+        }
+        
+        function calculateGPA() {
+            const credits = document.querySelectorAll('.credits');
+            const grades = document.querySelectorAll('.grade');
+            let totalPoints = 0, totalCredits = 0;
+            
+            for (let i = 0; i < credits.length; i++) {
+                const c = parseFloat(credits[i].value) || 0;
+                const g = parseFloat(grades[i].value) || 0;
+                if (c > 0 && g > 0) {
+                    const gp = g / 25 * 4;
+                    totalPoints += gp * c;
+                    totalCredits += c;
+                }
+            }
+            
+            if (totalCredits === 0) { alert('Enter at least one subject'); return; }
+            
+            const gpa = totalPoints / totalCredits;
+            document.getElementById('gpaValue').textContent = gpa.toFixed(2);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

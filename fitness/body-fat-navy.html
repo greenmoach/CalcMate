@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navy Body Fat Calculator</title>
+    <meta name="description" content="Calculate your body fat percentage using the US Navy method. Enter your neck, waist, and height measurements to estimate your body fat percentage accurately.">
+    <meta name="keywords" content="navy body fat calculator, US Navy body fat calculator, military body fat calculator, body fat percentage calculator, navy method calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/fitness/body-fat-navy.html">
+    <meta property="og:title" content="Navy Body Fat Calculator">
+    <meta property="og:description" content="Calculate your body fat percentage using the US Navy method. Enter your neck, waist, and height measurements to estimate your body fat percentage accurately.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/fitness/body-fat-navy.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Navy Body Fat Calculator",
+        "description": "Calculate your body fat percentage using the US Navy method. Enter your neck, waist, and height measurements to estimate your body fat percentage accurately.",
+        "url": "http://calculator.sotshau.fun/fitness/body-fat-navy.html",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #1e3c72; text-align: center; margin-bottom: 20px; letter-spacing: 2px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #1e3c72; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4e9f7 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .fat { font-size: 2.5rem; color: #1e3c72; letter-spacing: 2px; }
+        .category { font-family: sans-serif; color: #4a5568; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #1e3c72; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>⚓ NAVY BODY FAT</h1>
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="gender" style="width:100%;padding:14px;border:3px solid #e2e8f0;border-radius:10px;font-size:1rem;">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="Height">
+        </div>
+        <div class="input-group">
+            <label>Neck (cm)</label>
+            <input type="number" id="neck" placeholder="Neck circumference">
+        </div>
+        <div class="input-group">
+            <label>Waist (cm)</label>
+            <input type="number" id="waist" placeholder="Waist circumference">
+        </div>
+        <div class="input-group" id="hipGroup" style="display:none;">
+            <label>Hip (cm)</label>
+            <input type="number" id="hip" placeholder="Hip circumference">
+        </div>
+        <button onclick="calculate()">CALCULATE</button>
+        <div class="result" id="result">
+            <div class="fat" id="fatPercent">0%</div>
+            <div class="category" id="category">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        document.getElementById('gender').addEventListener('change', function() {
+            document.getElementById('hipGroup').style.display = this.value === 'female' ? 'block' : 'none';
+        });
+        
+        function calculate() {
+            const gender = document.getElementById('gender').value;
+            const height = parseFloat(document.getElementById('height').value);
+            const neck = parseFloat(document.getElementById('neck').value);
+            const waist = parseFloat(document.getElementById('waist').value);
+            const hip = parseFloat(document.getElementById('hip').value) || 0;
+            
+            if (!height || !neck || !waist) { alert('Fill required fields'); return; }
+            
+            let fat;
+            if (gender === 'male') {
+                fat = 495 / (1.0324 - 0.19077 * Math.log10(waist - neck) + 0.15456 * Math.log10(height)) - 450;
+            } else {
+                if (!hip) { alert('Hip measurement required for females'); return; }
+                fat = 495 / (1.29579 - 0.35004 * Math.log10(waist + hip - neck) + 0.22100 * Math.log10(height)) - 450;
+            }
+            
+            fat = Math.max(0, fat);
+            let cat = gender === 'male' 
+                ? (fat < 6 ? 'Essential' : fat < 14 ? 'Athletes' : fat < 18 ? 'Fitness' : fat < 25 ? 'Average' : 'Obese')
+                : (fat < 14 ? 'Essential' : fat < 21 ? 'Athletes' : fat < 25 ? 'Fitness' : fat < 32 ? 'Average' : 'Obese');
+            
+            document.getElementById('fatPercent').textContent = fat.toFixed(1) + '%';
+            document.getElementById('category').textContent = cat;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

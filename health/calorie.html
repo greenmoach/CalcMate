@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calorie Calculator</title>
+    <meta name="description" content="Calculate your daily calorie needs based on your age, gender, weight, height, and activity level. Find out how many calories you should eat to reach your goals.">
+    <meta name="keywords" content="calorie calculator, daily calorie calculator, calorie intake calculator, TDEE calculator, calories per day calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/calorie.html">
+    <meta property="og:title" content="Calorie Calculator">
+    <meta property="og:description" content="Calculate your daily calorie needs based on your age, gender, weight, height, and activity level. Find out how many calories you should eat to reach your goals.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/calorie.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calorie Calculator",
+        "description": "Calculate your daily calorie needs based on your age, gender, weight, height, and activity level. Find out how many calories you should eat to reach your goals.",
+        "url": "http://calculator.sotshau.fun/health/calorie.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        }
+        .calculator {
+            background: rgba(255,255,255,0.92);
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(132,250,176,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 { color: #00b894; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #2d3436; margin-bottom: 6px; font-weight: 700; }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #b2bec3;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #00b894; }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { box-shadow: 0 8px 20px rgba(0,184,148,0.4); }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #55efc4 0%, #81ecec 100%);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .calories { font-size: 2.2rem; font-weight: 700; color: #006266; }
+        .desc { color: #636e72; font-size: 0.9rem; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #636e72; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🍎 Daily Calorie Calculator</h1>
+        <div class="input-group">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="Enter age">
+        </div>
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="Enter height">
+        </div>
+        <div class="input-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Enter weight">
+        </div>
+        <div class="input-group">
+            <label>Activity Level</label>
+            <select id="activity">
+                <option value="1.2">Sedentary (little or no exercise)</option>
+                <option value="1.375">Lightly active (1-3 days/week)</option>
+                <option value="1.55">Moderately active (3-5 days/week)</option>
+                <option value="1.725">Very active (6-7 days/week)</option>
+                <option value="1.9">Super active (physical job)</option>
+            </select>
+        </div>
+        <button onclick="calculateCalories()">Calculate</button>
+        <div class="result" id="result">
+            <div class="calories" id="caloriesValue">0</div>
+            <div class="desc">calories/day to maintain weight</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateCalories() {
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            const activity = parseFloat(document.getElementById('activity').value);
+            
+            if (!age || !height || !weight) { alert('Please fill all fields'); return; }
+            
+            let bmr;
+            if (gender === 'male') bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            else bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            
+            const tdee = Math.round(bmr * activity);
+            document.getElementById('result').classList.add('show');
+            document.getElementById('caloriesValue').textContent = tdee;
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

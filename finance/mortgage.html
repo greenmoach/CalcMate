@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mortgage Calculator</title>
+    <meta name="description" content="Calculate your mortgage payments with our free mortgage calculator. Enter home price, down payment, interest rate, and loan term to estimate monthly payments.">
+    <meta name="keywords" content="mortgage calculator, home loan calculator, mortgage payment calculator, mortgage amortization calculator, house payment calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/mortgage.html">
+    <meta property="og:title" content="Mortgage Calculator">
+    <meta property="og:description" content="Calculate your mortgage payments with our free mortgage calculator. Enter home price, down payment, interest rate, and loan term to estimate monthly payments.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/mortgage.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Mortgage Calculator",
+        "description": "Calculate your mortgage payments with our free mortgage calculator. Enter home price, down payment, interest rate, and loan term to estimate monthly payments.",
+        "url": "http://calculator.sotshau.fun/finance/mortgage.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 { color: #1e3c72; text-align: center; margin-bottom: 25px; font-size: 1.7rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #1e3c72; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(30,60,114,0.4); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8f4fd 0%, #d4e9f7 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .monthly { font-size: 2rem; color: #1e3c72; font-weight: 900; }
+        .monthly-label { color: #4a5568; font-size: 0.9rem; }
+        .details { margin-top: 15px; padding-top: 15px; border-top: 1px solid #cbd5e0; color: #4a5568; font-size: 0.9rem; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏠 Mortgage Calculator</h1>
+        <div class="input-group">
+            <label>Home Price ($)</label>
+            <input type="number" id="price" placeholder="Enter home price">
+        </div>
+        <div class="input-group">
+            <label>Down Payment ($)</label>
+            <input type="number" id="downPayment" placeholder="Enter down payment">
+        </div>
+        <div class="input-group">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="rate" step="0.1" placeholder="Enter interest rate">
+        </div>
+        <div class="input-group">
+            <label>Loan Term (years)</label>
+            <input type="number" id="term" placeholder="30">
+        </div>
+        <button onclick="calculateMortgage()">Calculate</button>
+        <div class="result" id="result">
+            <div class="monthly" id="monthlyPayment">$0</div>
+            <div class="monthly-label">per month</div>
+            <div class="details" id="details">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateMortgage() {
+            const price = parseFloat(document.getElementById('price').value);
+            const downPayment = parseFloat(document.getElementById('downPayment').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const term = parseFloat(document.getElementById('term').value) || 30;
+            
+            if (!price || !rate) { alert('Please fill required fields'); return; }
+            
+            const principal = price - (downPayment || 0);
+            const monthlyRate = rate / 100 / 12;
+            const payments = term * 12;
+            
+            const monthly = principal * monthlyRate * Math.pow(1 + monthlyRate, payments) / (Math.pow(1 + monthlyRate, payments) - 1);
+            const totalPayment = monthly * payments;
+            const totalInterest = totalPayment - principal;
+            
+            document.getElementById('monthlyPayment').textContent = '$' + monthly.toFixed(2);
+            document.getElementById('details').innerHTML = 'Total: $' + totalPayment.toFixed(2) + '<br>Interest: $' + totalInterest.toFixed(2);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

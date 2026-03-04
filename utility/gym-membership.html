@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Membership Calculator</title>
+    <meta name="description" content="Calculate gym membership costs and compare plans. See monthly and yearly costs to find the best gym membership deal with our free calculator.">
+    <meta name="keywords" content="gym membership cost calculator, gym price calculator, fitness membership calculator, gym comparison calculator, gym savings calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/utility/gym-membership.html">
+    <meta property="og:title" content="Gym Membership Calculator">
+    <meta property="og:description" content="Calculate gym membership costs and compare plans. See monthly and yearly costs to find the best gym membership deal with our free calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/utility/gym-membership.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Gym Membership Calculator",
+        "description": "Calculate gym membership costs and compare plans. See monthly and yearly costs to find the best gym membership deal with our free calculator.",
+        "url": "http://calculator.sotshau.fun/utility/gym-membership.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(135deg, #e44d26 0%, #f16529 100%);
+        }
+        .calculator {
+            background: #1a1a2e;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #f16529; text-align: center; margin-bottom: 25px; font-size: 1.2rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #a0a0a0; margin-bottom: 6px; font-size: 0.8rem; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+            background: #16213e;
+            color: #fff;
+        }
+        input:focus { outline: none; border-color: #f16529; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e44d26 0%, #f16529 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: #16213e;
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .per-visit { font-size: 1.5rem; color: #f16529; }
+        .recommend { color: #4ade80; font-family: sans-serif; font-size: 0.8rem; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #a0a0a0; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>💪 Gym Membership</h1>
+        <div class="input-group">
+            <label>Monthly Membership ($)</label>
+            <input type="number" id="monthly" placeholder="Monthly fee">
+        </div>
+        <div class="input-group">
+            <label>Pay-per-visit ($)</label>
+            <input type="number" id="perVisit" placeholder="Single visit">
+        </div>
+        <div class="input-group">
+            <label>Expected Visits per Month</label>
+            <input type="number" id="visits" placeholder="Times per month">
+        </div>
+        <button onclick="calculate()">Compare</button>
+        <div class="result" id="result">
+            <div class="per-visit" id="perVisitCalc">-</div>
+            <div class="recommend" id="recommend">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const monthly = parseFloat(document.getElementById('monthly').value);
+            const payPer = parseFloat(document.getElementById('perVisit').value);
+            const visits = parseFloat(document.getElementById('visits').value);
+            
+            if (!monthly || !payPer || !visits) { alert('Fill all fields'); return; }
+            
+            const payAsYouGo = payPer * visits;
+            const savings = payAsYouGo - monthly;
+            
+            let msg = savings > 0 ? '💰 Membership saves $' + savings.toFixed(0) + '/month' : '⚠️ Pay-per-visit is cheaper!';
+            document.getElementById('perVisitCalc').textContent = 'Monthly: $' + monthly;
+            document.getElementById('recommend').textContent = msg;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

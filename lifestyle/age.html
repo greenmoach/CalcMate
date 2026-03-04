@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator</title>
+    <meta name="description" content="Calculate your exact age in years, months, days, and more. Find out your age from your birthdate with our free age calculator.">
+    <meta name="keywords" content="age calculator, how old am I calculator, age finder, birthday calculator, age in years calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/age.html">
+    <meta property="og:title" content="Age Calculator">
+    <meta property="og:description" content="Calculate your exact age in years, months, days, and more. Find out your age from your birthdate with our free age calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/age.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Age Calculator",
+        "description": "Calculate your exact age in years, months, days, and more. Find out your age from your birthdate with our free age calculator.",
+        "url": "http://calculator.sotshau.fun/lifestyle/age.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(252,182,159,0.4);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #e17055; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #fab1a0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #e17055; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e17055 0%, #fdcb6e 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .age { font-size: 2.5rem; color: #d35400; font-weight: 700; }
+        .details { color: #636e72; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #636e72; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎂 Age Calculator</h1>
+        <div class="input-group">
+            <label>Date of Birth</label>
+            <input type="date" id="birthDate">
+        </div>
+        <button onclick="calculateAge()">Calculate Age</button>
+        <div class="result" id="result">
+            <div class="age" id="ageYears">0 years</div>
+            <div class="details" id="details">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateAge() {
+            const birth = new Date(document.getElementById('birthDate').value);
+            const today = new Date();
+            
+            if (isNaN(birth)) { alert('Please select your birth date'); return; }
+            
+            let years = today.getFullYear() - birth.getFullYear();
+            let months = today.getMonth() - birth.getMonth();
+            let days = today.getDate() - birth.getDate();
+            
+            if (days < 0) { months--; days += 30; }
+            if (months < 0) { years--; months += 12; }
+            
+            const totalDays = Math.floor((today - birth) / (1000 * 60 * 60 * 24));
+            
+            document.getElementById('ageYears').textContent = years + ' years, ' + months + ' months';
+            document.getElementById('details').textContent = totalDays.toLocaleString() + ' total days';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

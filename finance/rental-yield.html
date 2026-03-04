@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rental Yield Calculator</title>
+    <meta name="description" content="Calculate your rental property yield and return on investment. Enter property price, monthly rent, and expenses to see your gross and net yield.">
+    <meta name="keywords" content="rental yield calculator, ROI calculator, property investment calculator, rental return calculator, landlord calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/rental-yield.html">
+    <meta property="og:title" content="Rental Yield Calculator">
+    <meta property="og:description" content="Calculate your rental property yield and return on investment. Enter property price, monthly rent, and expenses to see your gross and net yield.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/rental-yield.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Rental Yield Calculator",
+        "description": "Calculate your rental property yield and return on investment. Enter property price, monthly rent, and expenses to see your gross and net yield.",
+        "url": "http://calculator.sotshau.fun/finance/rental-yield.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #f5576c; text-align: center; margin-bottom: 25px; font-size: 1.5rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #f5576c; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffe2e2 0%, #fad0c4 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .yield { font-size: 2.2rem; color: #e94560; font-weight: 800; }
+        .yield-label { color: #4a5568; }
+        .details { margin-top: 12px; font-size: 0.9rem; color: #4a5568; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏢 Rental Yield Calculator</h1>
+        <div class="input-group">
+            <label>Property Price ($)</label>
+            <input type="number" id="price" placeholder="Enter property price">
+        </div>
+        <div class="input-group">
+            <label>Monthly Rent ($)</label>
+            <input type="number" id="rent" placeholder="Enter monthly rent">
+        </div>
+        <div class="input-group">
+            <label>Annual Expenses ($)</label>
+            <input type="number" id="expenses" placeholder="Tax, insurance, maintenance">
+        </div>
+        <button onclick="calculateYield()">Calculate</button>
+        <div class="result" id="result">
+            <div class="yield" id="yieldValue">0%</div>
+            <div class="yield-label">Gross Yield</div>
+            <div class="details" id="netYield">Net: 0%</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateYield() {
+            const price = parseFloat(document.getElementById('price').value);
+            const rent = parseFloat(document.getElementById('rent').value);
+            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
+            
+            if (!price || !rent) { alert('Please fill required fields'); return; }
+            
+            const grossYield = (rent * 12 / price) * 100;
+            const netYield = ((rent * 12 - expenses) / price) * 100;
+            
+            document.getElementById('yieldValue').textContent = grossYield.toFixed(2) + '%';
+            document.getElementById('netYield').textContent = 'Net Yield: ' + netYield.toFixed(2) + '%';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

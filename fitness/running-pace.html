@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Running Pace Calculator</title>
+    <meta name="description" content="Calculate your running pace, speed, and distance. Enter any two values to find the third. Plan your runs with our free running pace calculator.">
+    <meta name="keywords" content="running pace calculator, pace calculator, running speed calculator, marathon pace calculator,跑步配速计算器">
+    <link rel="canonical" href="http://calculator.sotshau.fun/fitness/running-pace.html">
+    <meta property="og:title" content="Running Pace Calculator">
+    <meta property="og:description" content="Calculate your running pace, speed, and distance. Enter any two values to find the third. Plan your runs with our free running pace calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/fitness/running-pace.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Running Pace Calculator",
+        "description": "Calculate your running pace, speed, and distance. Enter any two values to find the third. Plan your runs with our free running pace calculator.",
+        "url": "http://calculator.sotshau.fun/fitness/running-pace.html",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #11998e; text-align: center; margin-bottom: 25px; letter-spacing: 2px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #d1f7c4;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #11998e; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .pace { font-size: 2.2rem; color: #0c6658; letter-spacing: 1px; }
+        .details { font-family: sans-serif; color: #4a5568; margin-top: 10px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #11998e; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏃 RUNNING PACE</h1>
+        <div class="input-group">
+            <label>Distance (km)</label>
+            <input type="number" id="distance" placeholder="Enter distance">
+        </div>
+        <div class="input-group">
+            <label>Time (minutes)</label>
+            <input type="number" id="time" placeholder="Total time in minutes">
+        </div>
+        <button onclick="calculatePace()">CALCULATE</button>
+        <div class="result" id="result">
+            <div class="pace" id="pace">-</div>
+            <div class="details" id="details">per km</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculatePace() {
+            const distance = parseFloat(document.getElementById('distance').value);
+            const time = parseFloat(document.getElementById('time').value);
+            
+            if (!distance || !time) { alert('Enter distance and time'); return; }
+            
+            const paceMin = time / distance;
+            const minutes = Math.floor(paceMin);
+            const seconds = Math.round((paceMin - minutes) * 60);
+            
+            const paddedSec = seconds.toString().padStart(2, '0');
+            document.getElementById('pace').textContent = minutes + ':' + paddedSec;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

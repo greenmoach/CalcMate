@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anniversary Calculator</title>
+    <meta name="description" content="Calculate anniversary dates and milestones. Find out when your next wedding anniversary or special date will be with our free calculator.">
+    <meta name="keywords" content="anniversary calculator, wedding anniversary calculator, anniversary date calculator, milestone calculator, anniversary countdown">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/anniversary.html">
+    <meta property="og:title" content="Anniversary Calculator">
+    <meta property="og:description" content="Calculate anniversary dates and milestones. Find out when your next wedding anniversary or special date will be with our free calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/anniversary.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Anniversary Calculator",
+        "description": "Calculate anniversary dates and milestones. Find out when your next wedding anniversary or special date will be with our free calculator.",
+        "url": "http://calculator.sotshau.fun/lifestyle/anniversary.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #ffb8b8 0%, #ff6b6b 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(255,107,107,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #ff6b6b; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #ffb8b8;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #ff6b6b; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffb8b8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .days { font-size: 2rem; color: #d35400; font-weight: 700; }
+        .milestone { color: #e17055; margin-top: 8px; font-weight: 600; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #ff6b6b; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>💑 Anniversary Calculator</h1>
+        <div class="input-group">
+            <label>Start Date</label>
+            <input type="date" id="startDate">
+        </div>
+        <button onclick="calculate()">Calculate Days Together</button>
+        <div class="result" id="result">
+            <div class="days" id="daysCount">0 days</div>
+            <div class="milestone" id="milestone">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const start = new Date(document.getElementById('startDate').value);
+            const today = new Date();
+            
+            if (isNaN(start)) { alert('Select a date'); return; }
+            
+            const diff = today - start;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const years = Math.floor(days / 365);
+            const months = Math.floor((days % 365) / 30);
+            
+            let milestone = '';
+            if (days === 0) milestone = 'First day together! ❤️';
+            else if (days === 100) milestone = '100 Days! 🎉';
+            else if (days === 365) milestone = '1 Year! 💍';
+            else if (days === 730) milestone = '2 Years! 💎';
+            else if (days === 1825) milestone = '5 Years! 🎊';
+            else if (days === 3650) milestone = '10 Years! 👑';
+            else if (years > 0) milestone = years + ' year' + (years > 1 ? 's' : '') + ' together! 💕';
+            
+            document.getElementById('daysCount').textContent = days.toLocaleString() + ' days';
+            document.getElementById('milestone').textContent = milestone;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

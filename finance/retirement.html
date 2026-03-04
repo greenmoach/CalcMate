@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retirement Planner</title>
+    <meta name="description" content="Plan for your retirement with our free calculator. Enter your current age, retirement age, savings, and contributions to estimate your retirement fund.">
+    <meta name="keywords" content="retirement calculator, retirement planning calculator, pension calculator, 401k calculator, retirement savings calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/retirement.html">
+    <meta property="og:title" content="Retirement Planner">
+    <meta property="og:description" content="Plan for your retirement with our free calculator. Enter your current age, retirement age, savings, and contributions to estimate your retirement fund.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/retirement.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Retirement Planner",
+        "description": "Plan for your retirement with our free calculator. Enter your current age, retirement age, savings, and contributions to estimate your retirement fund.",
+        "url": "http://calculator.sotshau.fun/finance/retirement.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(79,172,254,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #0c3483; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #4facfe; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .savings { font-size: 2rem; color: #0c3483; font-weight: 800; }
+        .details { color: #4a5568; margin-top: 8px; font-size: 0.9rem; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏖️ Retirement Planner</h1>
+        <div class="input-group">
+            <label>Current Age</label>
+            <input type="number" id="currentAge" placeholder="Your age">
+        </div>
+        <div class="input-group">
+            <label>Retirement Age</label>
+            <input type="number" id="retireAge" placeholder="When to retire">
+        </div>
+        <div class="input-group">
+            <label>Current Savings ($)</label>
+            <input type="number" id="savings" placeholder="Current savings">
+        </div>
+        <div class="input-group">
+            <label>Monthly Contribution ($)</label>
+            <input type="number" id="contribution" placeholder="Monthly saving">
+        </div>
+        <div class="input-group">
+            <label>Expected Return (% per year)</label>
+            <input type="number" id="return" step="0.1" value="7" placeholder="7%">
+        </div>
+        <button onclick="calculateRetirement()">Calculate</button>
+        <div class="result" id="result">
+            <div class="savings" id="finalSavings">$0</div>
+            <div class="details" id="details">At retirement</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateRetirement() {
+            const currentAge = parseInt(document.getElementById('currentAge').value);
+            const retireAge = parseInt(document.getElementById('retireAge').value);
+            const savings = parseFloat(document.getElementById('savings').value) || 0;
+            const contribution = parseFloat(document.getElementById('contribution').value) || 0;
+            const returnRate = parseFloat(document.getElementById('return').value) || 7;
+            
+            if (!currentAge || !retireAge) { alert('Please fill age fields'); return; }
+            
+            const years = retireAge - currentAge;
+            const months = years * 12;
+            const monthlyRate = returnRate / 100 / 12;
+            
+            let futureValue = savings * Math.pow(1 + monthlyRate, months);
+            for (let i = 0; i < months; i++) {
+                futureValue += contribution * Math.pow(1 + monthlyRate, months - i);
+            }
+            
+            document.getElementById('finalSavings').textContent = '$' + Math.round(futureValue).toLocaleString();
+            document.getElementById('details').textContent = 'In ' + years + ' years at age ' + retireAge;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

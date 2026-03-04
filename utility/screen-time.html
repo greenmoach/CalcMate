@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Time Calculator</title>
+    <meta name="description" content="Calculate and track your daily screen time. Monitor your device usage and set healthy limits with our free screen time calculator.">
+    <meta name="keywords" content="screen time calculator, device usage calculator, digital wellbeing calculator, screen time tracker, phone usage calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/utility/screen-time.html">
+    <meta property="og:title" content="Screen Time Calculator">
+    <meta property="og:description" content="Calculate and track your daily screen time. Monitor your device usage and set healthy limits with our free screen time calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/utility/screen-time.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Screen Time Calculator",
+        "description": "Calculate and track your daily screen time. Monitor your device usage and set healthy limits with our free screen time calculator.",
+        "url": "http://calculator.sotshau.fun/utility/screen-time.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); }
+        .calculator { background: #fff; border-radius: 20px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.3); width: 100%; max-width: 400px; }
+        h1 { color: #0083b0; text-align: center; margin-bottom: 25px; font-size: 1.2rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #333; margin-bottom: 6px; font-size: 0.8rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: sans-serif; }
+        input:focus { outline: none; border-color: #0083b0; }
+        button { width: 100%; padding: 16px; background: linear-gradient(135deg, #00b4db 0%, #0083b0 100%); color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #e8f4f8; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .hours { font-size: 1.5rem; color: #0083b0; }
+        .warning { color: #e74c3c; font-family: sans-serif; font-size: 0.7rem; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #666; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>📺 Screen Time</h1>
+        <div class="input-group">
+            <label>Hours on Phone/Day</label>
+            <input type="number" id="phone" placeholder="Phone hours">
+        </div>
+        <div class="input-group">
+            <label>Hours TV/Day</label>
+            <input type="number" id="tv" placeholder="TV hours">
+        </div>
+        <div class="input-group">
+            <label>Hours Computer/Day</label>
+            <input type="number" id="computer" placeholder="Computer hours">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="hours" id="total">0 hours</div>
+            <div class="warning" id="warning"></div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const phone = parseFloat(document.getElementById('phone').value) || 0;
+            const tv = parseFloat(document.getElementById('tv').value) || 0;
+            const computer = parseFloat(document.getElementById('computer').value) || 0;
+            const total = phone + tv + computer;
+            const days = 365 - total * 30;
+            let warn = total > 6 ? '⚠️ High screen time!' : total > 4 ? '⚡ Moderate' : '✅ Healthy';
+            document.getElementById('total').textContent = total + ' hours/day';
+            document.getElementById('warning').textContent = warn + ' - ' + days + ' days/year awake';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

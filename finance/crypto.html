@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Calculator</title>
+    <meta name="description" content="Calculate your cryptocurrency investments and profits. Enter your purchase price, amount, and current price to see your gains or losses.">
+    <meta name="keywords" content="crypto calculator, cryptocurrency profit calculator, bitcoin calculator, ethereum calculator, crypto gains calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/crypto.html">
+    <meta property="og:title" content="Crypto Calculator">
+    <meta property="og:description" content="Calculate your cryptocurrency investments and profits. Enter your purchase price, amount, and current price to see your gains or losses.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/crypto.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Crypto Calculator",
+        "description": "Calculate your cryptocurrency investments and profits. Enter your purchase price, amount, and current price to see your gains or losses.",
+        "url": "http://calculator.sotshau.fun/finance/crypto.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(245,175,25,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #f12711; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 600; }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #f12711; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5af19 0%, #f12711 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .value { font-size: 2rem; color: #f12711; font-weight: 800; }
+        .change { margin-top: 8px; font-weight: 600; }
+        .profit { color: #00b894; }
+        .loss { color: #d63031; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>₿ Crypto Calculator</h1>
+        <div class="input-group">
+            <label>Cryptocurrency</label>
+            <select id="crypto">
+                <option value="btc">Bitcoin (BTC)</option>
+                <option value="eth">Ethereum (ETH)</option>
+                <option value="bnb">BNB</option>
+                <option value="sol">Solana (SOL)</option>
+                <option value="ada">Cardano (ADA)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Amount</label>
+            <input type="number" id="amount" placeholder="Amount of coins">
+        </div>
+        <div class="input-group">
+            <label>Buy Price ($)</label>
+            <input type="number" id="buyPrice" placeholder="Purchase price">
+        </div>
+        <div class="input-group">
+            <label>Current Price ($)</label>
+            <input type="number" id="currentPrice" placeholder="Current price">
+        </div>
+        <button onclick="calculateCrypto()">Calculate Profit/Loss</button>
+        <div class="result" id="result">
+            <div class="value" id="value">$0</div>
+            <div class="change" id="change">0%</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateCrypto() {
+            const amount = parseFloat(document.getElementById('amount').value);
+            const buyPrice = parseFloat(document.getElementById('buyPrice').value);
+            const currentPrice = parseFloat(document.getElementById('currentPrice').value);
+            
+            if (!amount || !buyPrice || !currentPrice) { alert('Please fill all fields'); return; }
+            
+            const buyTotal = amount * buyPrice;
+            const currentValue = amount * currentPrice;
+            const profit = currentValue - buyTotal;
+            const percentChange = ((currentValue - buyTotal) / buyTotal) * 100;
+            
+            document.getElementById('value').textContent = '$' + currentValue.toLocaleString();
+            const changeEl = document.getElementById('change');
+            changeEl.textContent = (profit >= 0 ? '+' : '') + '$' + profit.toFixed(2) + ' (' + percentChange.toFixed(2) + '%)';
+            changeEl.className = 'change ' + (profit >= 0 ? 'profit' : 'loss');
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

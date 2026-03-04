@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exam Score Calculator</title>
+    <meta name="description" content="Calculate your exam score and grade quickly. Enter points earned and total points to see your percentage score with our free exam calculator.">
+    <meta name="keywords" content="exam score calculator, test grade calculator, percentage score calculator, points calculator, test result calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/education/exam-score.html">
+    <meta property="og:title" content="Exam Score Calculator">
+    <meta property="og:description" content="Calculate your exam score and grade quickly. Enter points earned and total points to see your percentage score with our free exam calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/education/exam-score.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Exam Score Calculator",
+        "description": "Calculate your exam score and grade quickly. Enter points earned and total points to see your percentage score with our free exam calculator.",
+        "url": "http://calculator.sotshau.fun/education/exam-score.html",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Righteous', cursive;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #f5576c; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #fce4ec;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #f5576c; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .score { font-size: 2.5rem; }
+        .status { font-family: sans-serif; margin-top: 5px; }
+        .pass { background: #d4fc79; color: #0c6658; }
+        .fail { background: #ff7675; color: white; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #f5576c; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>✅ Exam Score</h1>
+        <div class="input-group">
+            <label>Correct Answers</label>
+            <input type="number" id="correct" placeholder="Number correct">
+        </div>
+        <div class="input-group">
+            <label>Total Questions</label>
+            <input type="number" id="total" placeholder="Total questions">
+        </div>
+        <div class="input-group">
+            <label>Passing Score (%)</label>
+            <input type="number" id="passing" value="60">
+        </div>
+        <button onclick="calculate()">Check</button>
+        <div class="result" id="result">
+            <div class="score" id="score">0%</div>
+            <div class="status" id="status">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const correct = parseFloat(document.getElementById('correct').value);
+            const total = parseFloat(document.getElementById('total').value);
+            const passing = parseFloat(document.getElementById('passing').value);
+            
+            if (!correct || !total) { alert('Enter values'); return; }
+            
+            const percent = (correct / total) * 100;
+            const passed = percent >= passing;
+            
+            const result = document.getElementById('result');
+            result.className = 'result show ' + (passed ? 'pass' : 'fail');
+            document.getElementById('score').textContent = percent.toFixed(1) + '%';
+            document.getElementById('status').textContent = passed ? 'PASSED!' : 'FAILED';
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

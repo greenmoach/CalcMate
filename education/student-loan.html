@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Loan Calculator</title>
+    <meta name="description" content="Calculate your student loan payments and total interest. Enter loan amount, interest rate, and term to estimate your monthly student loan payments.">
+    <meta name="keywords" content="student loan calculator, college loan calculator, education loan calculator, student debt calculator, loan repayment calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/education/student-loan.html">
+    <meta property="og:title" content="Student Loan Calculator">
+    <meta property="og:description" content="Calculate your student loan payments and total interest. Enter loan amount, interest rate, and term to estimate your monthly student loan payments.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/education/student-loan.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Student Loan Calculator",
+        "description": "Calculate your student loan payments and total interest. Enter loan amount, interest rate, and term to estimate your monthly student loan payments.",
+        "url": "http://calculator.sotshau.fun/education/student-loan.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Righteous', cursive;
+            background: linear-gradient(135deg, #00cec9 0%, #81ecec 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #00b894; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #81ecec;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #00b894; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00b894 0%, #81ecec 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #d1f7c4 0%, #a8e6cf 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .payment { font-size: 1.8rem; color: #006266; }
+        .details { font-family: sans-serif; color: #4a5568; margin-top: 8px; font-size: 0.9rem; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #00b894; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎒 Student Loan</h1>
+        <div class="input-group">
+            <label>Loan Amount ($)</label>
+            <input type="number" id="loan" placeholder="Total loan">
+        </div>
+        <div class="input-group">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="rate" value="5" step="0.1">
+        </div>
+        <div class="input-group">
+            <label>Term (years)</label>
+            <input type="number" id="term" value="10">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="payment" id="payment">$0</div>
+            <div class="details" id="details">per month</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const loan = parseFloat(document.getElementById('loan').value);
+            const rate = parseFloat(document.getElementById('rate').value);
+            const term = parseFloat(document.getElementById('term').value);
+            
+            if (!loan || !rate || !term) { alert('Fill all fields'); return; }
+            
+            const monthlyRate = rate / 100 / 12;
+            const months = term * 12;
+            const payment = loan * monthlyRate * Math.pow(1 + monthlyRate, months) / (Math.pow(1 + monthlyRate, months) - 1);
+            const total = payment * months;
+            const interest = total - loan;
+            
+            document.getElementById('payment').textContent = '$' + payment.toFixed(2);
+            document.getElementById('details').innerHTML = 'Total: $' + total.toFixed(0) + '<br>Interest: $' + interest.toFixed(0);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

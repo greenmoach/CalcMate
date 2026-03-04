@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Compatibility Calculator</title>
+    <meta name="description" content="Check love compatibility between you and your partner. Enter names to calculate relationship compatibility score with our fun love calculator.">
+    <meta name="keywords" content="love compatibility calculator, love calculator, relationship compatibility calculator, crush calculator, love match calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/entertainment/love-compatibility.html">
+    <meta property="og:title" content="Love Compatibility Calculator">
+    <meta property="og:description" content="Check love compatibility between you and your partner. Enter names to calculate relationship compatibility score with our fun love calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/entertainment/love-compatibility.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Love Compatibility Calculator",
+        "description": "Check love compatibility between you and your partner. Enter names to calculate relationship compatibility score with our fun love calculator.",
+        "url": "http://calculator.sotshau.fun/entertainment/love-compatibility.html",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Fredoka One', cursive; background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
+        .calculator { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 30px 60px rgba(255,154,158,0.4); width: 100%; max-width: 380px; text-align: center; }
+        h1 { color: #e84393; margin-bottom: 25px; font-size: 1.6rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #333; margin-bottom: 8px; font-family: sans-serif; }
+        input { width: 100%; padding: 15px; border: 3px solid #fce4ec; border-radius: 15px; font-size: 1rem; font-family: sans-serif; }
+        input:focus { outline: none; border-color: #e84393; }
+        button { width: 100%; padding: 18px; background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%); color: #fff; border: none; border-radius: 15px; font-size: 1.2rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: scale(1.02); }
+        .result { margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); border-radius: 20px; display: none; }
+        .result.show { display: block; animation: pulse 0.5s; }
+        @keyframes pulse { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
+        .percent { font-size: 3rem; color: #d35400; }
+        .message { font-family: sans-serif; color: #636e72; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #e84393; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>💕 Love Compatibility</h1>
+        <div class="input-group">
+            <label>Your Name</label>
+            <input type="text" id="name1" placeholder="Your name">
+        </div>
+        <div class="input-group">
+            <label>Partner's Name</label>
+            <input type="text" id="name2" placeholder="Their name">
+        </div>
+        <button onclick="calculate()">Calculate Love!</button>
+        <div class="result" id="result">
+            <div class="percent" id="percent">0%</div>
+            <div class="message" id="message">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const n1 = document.getElementById('name1').value.toLowerCase();
+            const n2 = document.getElementById('name2').value.toLowerCase();
+            if (!n1 || !n2) { alert('Enter both names'); return; }
+            let sum = 0;
+            for (let c of n1 + n2) sum += c.charCodeAt(0);
+            const percent = (sum * 7 + 13) % 101;
+            const msgs = ['Not meant to be 😅', 'Maybe just friends 👫', 'There is a chance 💫', 'Looking good! 💖', 'Soulmates! 💕', 'Perfect match! 💍'];
+            const msg = msgs[Math.floor(percent / 20)];
+            document.getElementById('percent').textContent = percent + '%';
+            document.getElementById('message').textContent = msg;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

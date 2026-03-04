@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator Hub - 60+ Free Online Calculators</title>
+    <meta name="description" content="Access 60+ free online calculators for finance, health, fitness, education, and more. Calculate loan payments, BMI, GPA, unit conversions, and more instantly.">
+    <meta name="keywords" content="online calculator, free calculator, calculator hub, all calculators, financial calculator, health calculator, fitness calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/index.html">
+    <meta property="og:title" content="Calculator Hub - 60+ Free Online Calculators">
+    <meta property="og:description" content="Access 60+ free online calculators for finance, health, fitness, education, and more. Calculate loan payments, BMI, GPA, unit conversions, and more instantly.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/index.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Calculator Hub",
+        "description": "Access 60+ free online calculators for finance, health, fitness, education, and more.",
+        "url": "http://calculator.sotshau.fun/index.html",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "http://calculator.sotshau.fun/index.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            color: #fff;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        }
+
+        .header p {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+
+        .category {
+            margin-bottom: 50px;
+        }
+
+        .category-title {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-left: 10px;
+            border-left: 4px solid;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .category-title .icon {
+            font-size: 1.5rem;
+        }
+
+        .category:nth-child(2) .category-title { border-color: #e94560; }
+        .category:nth-child(3) .category-title { border-color: #f9a826; }
+        .category:nth-child(4) .category-title { border-color: #00d9ff; }
+        .category:nth-child(5) .category-title { border-color: #7bed9f; }
+        .category:nth-child(6) .category-title { border-color: #a55eea; }
+        .category:nth-child(7) .category-title { border-color: #fd79a8; }
+        .category:nth-child(8) .category-title { border-color: #fdcb6e; }
+        .category:nth-child(9) .category-title { border-color: #74b9ff; }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 25px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--card-color), transparent);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .card-desc {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+        }
+
+        .category:nth-child(2) .card { --card-color: #e94560; }
+        .category:nth-child(3) .card { --card-color: #f9a826; }
+        .category:nth-child(4) .card { --card-color: #00d9ff; }
+        .category:nth-child(5) .card { --card-color: #7bed9f; }
+        .category:nth-child(6) .card { --card-color: #a55eea; }
+        .category:nth-child(7) .card { --card-color: #fd79a8; }
+        .category:nth-child(8) .card { --card-color: #fdcb6e; }
+        .category:nth-child(9) .card { --card-color: #74b9ff; }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧮 Calculator Hub</h1>
+        <p>60+ Calculators for Every Need</p>
+        <p style="margin-top:10px;"><a href="about.html" style="color:#e94560;text-decoration:none;font-size:0.9rem;">About &bull; AI Attribution</a></p>
+    </div>
+
+    <!-- AI Attribution -->
+    <div style="text-align:center;padding:15px;margin-bottom:30px;background:rgba(255,255,255,0.05);border-radius:10px;">
+        <p style="color:#aaa;font-size:14px;">
+            🤖 AI-assisted project • Built with <a href="https://opencode.ai" target="_blank" style="color:#e94560;text-decoration:none;">opencode</a>
+        </p>
+        <p style="color:#666;font-size:12px;margin-top:5px;">60+ calculators to simplify your daily calculations</p>
+    </div>
+
+    <!-- Health -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">💊</span> Health</h2>
+        <div class="cards-grid">
+            <a href="health/bmi.html" class="card">
+                <div class="card-icon">⚖️</div>
+                <div class="card-title">BMI Calculator</div>
+                <div class="card-desc">Body Mass Index</div>
+            </a>
+            <a href="health/bmr.html" class="card">
+                <div class="card-icon">🔥</div>
+                <div class="card-title">BMR Calculator</div>
+                <div class="card-desc">Basal Metabolic Rate</div>
+            </a>
+            <a href="health/calorie.html" class="card">
+                <div class="card-icon">🍎</div>
+                <div class="card-title">Calorie Calculator</div>
+                <div class="card-desc">Daily Calories Needed</div>
+            </a>
+            <a href="health/body-fat.html" class="card">
+                <div class="card-icon">💪</div>
+                <div class="card-title">Body Fat Calculator</div>
+                <div class="card-desc">Body Fat Percentage</div>
+            </a>
+            <a href="health/water-intake.html" class="card">
+                <div class="card-icon">💧</div>
+                <div class="card-title">Water Intake</div>
+                <div class="card-desc">Daily Water Needed</div>
+            </a>
+            <a href="health/pregnancy-due.html" class="card">
+                <div class="card-icon">👶</div>
+                <div class="card-title">Due Date Calculator</div>
+                <div class="card-desc">Pregnancy Due Date</div>
+            </a>
+            <a href="health/ovulation.html" class="card">
+                <div class="card-icon">🩺</div>
+                <div class="card-title">Ovulation Calculator</div>
+                <div class="card-desc">Fertility Window</div>
+            </a>
+            <a href="health/baby-age.html" class="card">
+                <div class="card-icon">🧒</div>
+                <div class="card-title">Baby Age Calculator</div>
+                <div class="card-desc">Baby Age in Years</div>
+            </a>
+            <a href="health/pet-age.html" class="card">
+                <div class="card-icon">🐕</div>
+                <div class="card-title">Pet Age Calculator</div>
+                <div class="card-desc">Dog/Cat to Human Age</div>
+            </a>
+            <a href="health/blood-alcohol.html" class="card">
+                <div class="card-icon">🍺</div>
+                <div class="card-title">Blood Alcohol</div>
+                <div class="card-desc">Alcohol Metabolism</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Finance -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">💰</span> Finance</h2>
+        <div class="cards-grid">
+            <a href="finance/mortgage.html" class="card">
+                <div class="card-icon">🏠</div>
+                <div class="card-title">Mortgage Calculator</div>
+                <div class="card-desc">Home Loan Payments</div>
+            </a>
+            <a href="finance/loan.html" class="card">
+                <div class="card-icon">📋</div>
+                <div class="card-title">Loan Calculator</div>
+                <div class="card-desc">Loan Payment Plan</div>
+            </a>
+            <a href="finance/compound-interest.html" class="card">
+                <div class="card-icon">📈</div>
+                <div class="card-title">Compound Interest</div>
+                <div class="card-desc">Investment Growth</div>
+            </a>
+            <a href="finance/stock-average.html" class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Stock Average</div>
+                <div class="card-desc">Average Cost Basis</div>
+            </a>
+            <a href="finance/rental-yield.html" class="card">
+                <div class="card-icon">🏢</div>
+                <div class="card-title">Rental Yield</div>
+                <div class="card-desc">Property ROI</div>
+            </a>
+            <a href="finance/salary-tax.html" class="card">
+                <div class="card-icon">💵</div>
+                <div class="card-title">Salary Tax</div>
+                <div class="card-desc">Gross to Net Salary</div>
+            </a>
+            <a href="finance/tip.html" class="card">
+                <div class="card-icon">🍽️</div>
+                <div class="card-title">Tip Calculator</div>
+                <div class="card-desc">Tip & Split Bill</div>
+            </a>
+            <a href="finance/credit-card-interest.html" class="card">
+                <div class="card-icon">💳</div>
+                <div class="card-title">Credit Card Interest</div>
+                <div class="card-desc">Interest Calculator</div>
+            </a>
+            <a href="finance/retirement.html" class="card">
+                <div class="card-icon">🏖️</div>
+                <div class="card-title">Retirement Planner</div>
+                <div class="card-desc">Savings Goal</div>
+            </a>
+            <a href="finance/crypto.html" class="card">
+                <div class="card-icon">₿</div>
+                <div class="card-title">Crypto Calculator</div>
+                <div class="card-desc">Bitcoin/Altcoin</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Lifestyle -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🌍</span> Lifestyle</h2>
+        <div class="cards-grid">
+            <a href="lifestyle/date-difference.html" class="card">
+                <div class="card-icon">📅</div>
+                <div class="card-title">Date Difference</div>
+                <div class="card-desc">Days Between Dates</div>
+            </a>
+            <a href="lifestyle/age.html" class="card">
+                <div class="card-icon">🎂</div>
+                <div class="card-title">Age Calculator</div>
+                <div class="card-desc">Exact Age</div>
+            </a>
+            <a href="lifestyle/time-zone.html" class="card">
+                <div class="card-icon">⏰</div>
+                <div class="card-title">Time Zone</div>
+                <div class="card-desc">World Clock</div>
+            </a>
+            <a href="lifestyle/unit-converter.html" class="card">
+                <div class="card-icon">🔄</div>
+                <div class="card-title">Unit Converter</div>
+                <div class="card-desc">Length, Weight, Temp</div>
+            </a>
+            <a href="lifestyle/currency-exchange.html" class="card">
+                <div class="card-icon">💱</div>
+                <div class="card-title">Currency Exchange</div>
+                <div class="card-desc">Money Conversion</div>
+            </a>
+            <a href="lifestyle/work-hours.html" class="card">
+                <div class="card-icon">⏱️</div>
+                <div class="card-title">Work Hours</div>
+                <div class="card-desc">Overtime Calculator</div>
+            </a>
+            <a href="lifestyle/leave.html" class="card">
+                <div class="card-icon">🏖️</div>
+                <div class="card-title">Leave Calculator</div>
+                <div class="card-desc">Vacation Days</div>
+            </a>
+            <a href="lifestyle/countdown.html" class="card">
+                <div class="card-icon">⏳</div>
+                <div class="card-title">Countdown</div>
+                <div class="card-desc">Event Timer</div>
+            </a>
+            <a href="lifestyle/anniversary.html" class="card">
+                <div class="card-icon">💑</div>
+                <div class="card-title">Anniversary</div>
+                <div class="card-desc">Days Together</div>
+            </a>
+            <a href="lifestyle/travel-time.html" class="card">
+                <div class="card-icon">✈️</div>
+                <div class="card-title">Travel Time</div>
+                <div class="card-desc">Trip Duration</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Fitness -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🏋️</span> Fitness</h2>
+        <div class="cards-grid">
+            <a href="fitness/one-rep-max.html" class="card">
+                <div class="card-icon">🏆</div>
+                <div class="card-title">One Rep Max</div>
+                <div class="card-desc">1RM Estimator</div>
+            </a>
+            <a href="fitness/calorie-burn.html" class="card">
+                <div class="card-icon">⚡</div>
+                <div class="card-title">Calorie Burn</div>
+                <div class="card-desc">Exercise Calories</div>
+            </a>
+            <a href="fitness/running-pace.html" class="card">
+                <div class="card-icon">🏃</div>
+                <div class="card-title">Running Pace</div>
+                <div class="card-desc">Pace Calculator</div>
+            </a>
+            <a href="fitness/body-fat-navy.html" class="card">
+                <div class="card-icon">⚓</div>
+                <div class="card-title">Navy Body Fat</div>
+                <div class="card-desc">Military Method</div>
+            </a>
+            <a href="fitness/macro.html" class="card">
+                <div class="card-icon">🥗</div>
+                <div class="card-title">Macro Calculator</div>
+                <div class="card-desc">Protein, Carb, Fat</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Education -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🎓</span> Education</h2>
+        <div class="cards-grid">
+            <a href="education/gpa.html" class="card">
+                <div class="card-icon">📝</div>
+                <div class="card-title">GPA Calculator</div>
+                <div class="card-desc">Grade Point Average</div>
+            </a>
+            <a href="education/grade-percentage.html" class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Grade Percentage</div>
+                <div class="card-desc">Score Converter</div>
+            </a>
+            <a href="education/exam-score.html" class="card">
+                <div class="card-icon">✅</div>
+                <div class="card-title">Exam Score</div>
+                <div class="card-desc">Pass/Fail Calculator</div>
+            </a>
+            <a href="education/scholarship.html" class="card">
+                <div class="card-icon">🎁</div>
+                <div class="card-title">Scholarship</div>
+                <div class="card-desc">Aid Calculator</div>
+            </a>
+            <a href="education/student-loan.html" class="card">
+                <div class="card-icon">🎒</div>
+                <div class="card-title">Student Loan</div>
+                <div class="card-desc">Loan Repayment</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Utility -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🔧</span> Utility</h2>
+        <div class="cards-grid">
+            <a href="utility/energy-cost.html" class="card">
+                <div class="card-icon">💡</div>
+                <div class="card-title">Energy Cost</div>
+                <div class="card-desc">Electricity Bill</div>
+            </a>
+            <a href="utility/phone-data.html" class="card">
+                <div class="card-icon">📱</div>
+                <div class="card-title">Phone Data</div>
+                <div class="card-desc">Data Usage</div>
+            </a>
+            <a href="utility/gym-membership.html" class="card">
+                <div class="card-icon">💪</div>
+                <div class="card-title">Gym Membership</div>
+                <div class="card-desc">Cost Comparison</div>
+            </a>
+            <a href="utility/food-cost.html" class="card">
+                <div class="card-icon">🍔</div>
+                <div class="card-title">Food Cost</div>
+                <div class="card-desc">Meal Budget</div>
+            </a>
+            <a href="utility/netflix-cost.html" class="card">
+                <div class="card-icon">🎬</div>
+                <div class="card-title">Netflix Cost</div>
+                <div class="card-desc">Subscription Value</div>
+            </a>
+            <a href="utility/download-time.html" class="card">
+                <div class="card-icon">⬇️</div>
+                <div class="card-title">Download Time</div>
+                <div class="card-desc">Transfer Time</div>
+            </a>
+            <a href="utility/screen-time.html" class="card">
+                <div class="card-icon">📺</div>
+                <div class="card-title">Screen Time</div>
+                <div class="card-desc">Daily Usage</div>
+            </a>
+            <a href="utility/discount.html" class="card">
+                <div class="card-icon">🏷️</div>
+                <div class="card-title">Discount</div>
+                <div class="card-desc">Sale Calculator</div>
+            </a>
+            <a href="utility/ppi-screen.html" class="card">
+                <div class="card-icon">🖥️</div>
+                <div class="card-title">Screen PPI</div>
+                <div class="card-desc">Pixel Density</div>
+            </a>
+            <a href="utility/chinese-zodiac.html" class="card">
+                <div class="card-icon">🐉</div>
+                <div class="card-title">Chinese Zodiac</div>
+                <div class="card-desc">Zodiac Animal</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Transportation -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🚗</span> Transportation</h2>
+        <div class="cards-grid">
+            <a href="transportation/gas-fuel.html" class="card">
+                <div class="card-icon">⛽</div>
+                <div class="card-title">Gas & Fuel</div>
+                <div class="card-desc">Fuel Economy</div>
+            </a>
+            <a href="transportation/car-maintenance.html" class="card">
+                <div class="card-icon">🔧</div>
+                <div class="card-title">Car Maintenance</div>
+                <div class="card-desc">Service Cost</div>
+            </a>
+            <a href="transportation/flight-mileage.html" class="card">
+                <div class="card-icon">🛫</div>
+                <div class="card-title">Flight Mileage</div>
+                <div class="card-desc">Miles Calculator</div>
+            </a>
+            <a href="transportation/flight-ticket.html" class="card">
+                <div class="card-icon">🎫</div>
+                <div class="card-title">Flight Ticket</div>
+                <div class="card-desc">Airline Fees</div>
+            </a>
+            <a href="transportation/commute-cost.html" class="card">
+                <div class="card-icon">🚇</div>
+                <div class="card-title">Commute Cost</div>
+                <div class="card-desc">Daily Transport</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Entertainment -->
+    <div class="category">
+        <h2 class="category-title"><span class="icon">🎮</span> Entertainment</h2>
+        <div class="cards-grid">
+            <a href="entertainment/lucky-number.html" class="card">
+                <div class="card-icon">🍀</div>
+                <div class="card-title">Lucky Number</div>
+                <div class="card-desc">Random Fortune</div>
+            </a>
+            <a href="entertainment/love-compatibility.html" class="card">
+                <div class="card-icon">💕</div>
+                <div class="card-title">Love Compatibility</div>
+                <div class="card-desc">Name Match</div>
+            </a>
+            <a href="entertainment/lottery-prob.html" class="card">
+                <div class="card-icon">🎰</div>
+                <div class="card-title">Lottery Probability</div>
+                <div class="card-desc">Win Chance</div>
+            </a>
+            <a href="entertainment/lucky-color.html" class="card">
+                <div class="card-icon">🌈</div>
+                <div class="card-title">Lucky Color</div>
+                <div class="card-desc">Daily Fortune</div>
+            </a>
+            <a href="entertainment/red-packet.html" class="card">
+                <div class="card-icon">🧧</div>
+                <div class="card-title">Red Packet</div>
+                <div class="card-desc">Chinese New Year</div>
+            </a>
+        </div>
+    </div>
+    
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

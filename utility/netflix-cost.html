@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Cost Calculator</title>
+    <meta name="description" content="Calculate your Netflix subscription costs over time. See monthly and yearly costs with our free Netflix cost calculator.">
+    <meta name="keywords" content="Netflix cost calculator, streaming cost calculator, subscription cost calculator, Netflix price calculator, entertainment cost calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/utility/netflix-cost.html">
+    <meta property="og:title" content="Netflix Cost Calculator">
+    <meta property="og:description" content="Calculate your Netflix subscription costs over time. See monthly and yearly costs with our free Netflix cost calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/utility/netflix-cost.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Netflix Cost Calculator",
+        "description": "Calculate your Netflix subscription costs over time. See monthly and yearly costs with our free Netflix cost calculator.",
+        "url": "http://calculator.sotshau.fun/utility/netflix-cost.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #e50914 0%, #221f1f 100%); }
+        .calculator { background: #fff; border-radius: 20px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); width: 100%; max-width: 400px; }
+        h1 { color: #e50914; text-align: center; margin-bottom: 25px; font-size: 1.2rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #333; margin-bottom: 6px; font-size: 0.8rem; }
+        input, select { width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: sans-serif; }
+        input:focus, select:focus { outline: none; border-color: #e50914; }
+        button { width: 100%; padding: 16px; background: #e50914; color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #f5f5f5; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .cost { font-size: 1.5rem; color: #e50914; }
+        .per-person { color: #666; font-family: sans-serif; font-size: 0.8rem; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #666; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎬 Netflix Cost</h1>
+        <div class="input-group">
+            <label>Plan</label>
+            <select id="plan">
+                <option value="15.49">Basic ($15.49)</option>
+                <option value="22.99" selected>Standard ($22.99)</option>
+                <option value="35.99">Premium ($35.99)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Number of People</label>
+            <input type="number" id="people" value="1" min="1">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="cost" id="cost">$0</div>
+            <div class="per-person" id="perPerson">per person/month</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const plan = parseFloat(document.getElementById('plan').value);
+            const people = parseInt(document.getElementById('people').value) || 1;
+            const perPerson = plan / people;
+            document.getElementById('cost').textContent = '$' + perPerson.toFixed(2);
+            document.getElementById('perPerson').textContent = 'per person/month (saves $' + (plan - perPerson).toFixed(2) + ')';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

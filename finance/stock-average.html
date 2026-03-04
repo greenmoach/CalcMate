@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Average Calculator</title>
+    <meta name="description" content="Calculate your stock average cost and see your profit or loss. Enter multiple purchase prices and quantities to get your average cost per share.">
+    <meta name="keywords" content="stock average calculator, average cost calculator, stock profit calculator, share cost calculator, investment calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/stock-average.html">
+    <meta property="og:title" content="Stock Average Calculator">
+    <meta property="og:description" content="Calculate your stock average cost and see your profit or loss. Enter multiple purchase prices and quantities to get your average cost per share.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/stock-average.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Stock Average Calculator",
+        "description": "Calculate your stock average cost and see your profit or loss. Enter multiple purchase prices and quantities to get your average cost per share.",
+        "url": "http://calculator.sotshau.fun/finance/stock-average.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 { color: #667eea; text-align: center; margin-bottom: 25px; font-size: 1.5rem; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 600; }
+        .trade-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .trade-row input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+        }
+        .trade-row input:focus { outline: none; border-color: #667eea; }
+        .trade-row button {
+            padding: 12px 15px;
+            background: #e53e3e;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #addTrade {
+            background: #48bb78;
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+        button.calculate {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e9d8fd 0%, #d6bcfa 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .avg { font-size: 2rem; color: #667eea; font-weight: 800; }
+        .total { color: #553c9a; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>📊 Stock Average Calculator</h1>
+        <div id="trades">
+            <div class="trade-row">
+                <input type="number" placeholder="Price" class="price">
+                <input type="number" placeholder="Shares" class="shares">
+            </div>
+        </div>
+        <button id="addTrade" onclick="addTrade()">+ Add Another Trade</button>
+        <button class="calculate" onclick="calculateAverage()">Calculate Average</button>
+        <div class="result" id="result">
+            <div class="avg" id="avgPrice">$0.00</div>
+            <div class="total" id="totalShares">Total: 0 shares</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function addTrade() {
+            const div = document.createElement('div');
+            div.className = 'trade-row';
+            div.innerHTML = '<input type="number" placeholder="Price" class="price"><input type="number" placeholder="Shares" class="shares"><button onclick="this.parentElement.remove()">×</button>';
+            document.getElementById('trades').appendChild(div);
+        }
+        
+        function calculateAverage() {
+            const prices = document.querySelectorAll('.price');
+            const shares = document.querySelectorAll('.shares');
+            let totalCost = 0, totalShares = 0;
+            
+            for (let i = 0; i < prices.length; i++) {
+                const p = parseFloat(prices[i].value) || 0;
+                const s = parseFloat(shares[i].value) || 0;
+                totalCost += p * s;
+                totalShares += s;
+            }
+            
+            if (totalShares === 0) { alert('Please enter at least one trade'); return; }
+            
+            const avg = totalCost / totalShares;
+            document.getElementById('avgPrice').textContent = '$' + avg.toFixed(2);
+            document.getElementById('totalShares').textContent = 'Total: ' + totalShares + ' shares';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

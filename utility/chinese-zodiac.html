@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Zodiac Calculator</title>
+    <meta name="description" content="Discover your Chinese zodiac sign and animal. Enter your birth year to find your zodiac animal and learn about its characteristics.">
+    <meta name="keywords" content="Chinese zodiac calculator, zodiac sign calculator, Chinese animal calculator, zodiac year calculator, 生肖计算器">
+    <link rel="canonical" href="http://calculator.sotshau.fun/utility/chinese-zodiac.html">
+    <meta property="og:title" content="Chinese Zodiac Calculator">
+    <meta property="og:description" content="Discover your Chinese zodiac sign and animal. Enter your birth year to find your zodiac animal and learn about its characteristics.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/utility/chinese-zodiac.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Chinese Zodiac Calculator",
+        "description": "Discover your Chinese zodiac sign and animal. Enter your birth year to find your zodiac animal and learn about its characteristics.",
+        "url": "http://calculator.sotshau.fun/utility/chinese-zodiac.html",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Ma Shan Zheng', cursive; background: linear-gradient(135deg, #c31432 0%, #240b36 100%); }
+        .calculator { background: linear-gradient(135deg, #fff5e6 0%, #ffe4c4 100%); border-radius: 25px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); width: 100%; max-width: 400px; text-align: center; }
+        h1 { color: #c31432; margin-bottom: 25px; font-size: 2rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #8b4513; margin-bottom: 6px; font-family: sans-serif; }
+        input { width: 100%; padding: 14px; border: 2px solid #d2691e; border-radius: 10px; font-size: 1rem; font-family: sans-serif; }
+        input:focus { outline: none; border-color: #c31432; }
+        button { width: 100%; padding: 16px; background: #c31432; color: #fff; border: none; border-radius: 10px; font-size: 1.2rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #fff; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .zodiac { font-size: 3rem; }
+        .animal { font-size: 1.8rem; color: #8b4513; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #8b4513; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🐉 Chinese Zodiac</h1>
+        <div class="input-group">
+            <label>Year of Birth</label>
+            <input type="number" id="year" placeholder="Enter year">
+        </div>
+        <button onclick="calculate()">Find</button>
+        <div class="result" id="result">
+            <div class="zodiac" id="emoji">🐀</div>
+            <div class="animal" id="animal">Rat</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const year = parseInt(document.getElementById('year').value);
+            if (!year) { alert('Enter year'); return; }
+            const zodiacs = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
+            const emojis = ['🐀','🐂','🐅','🐇','🐉','🐍','🐎','🐐','🐒','🐓','🐕','🐖'];
+            const index = (year - 1900) % 12;
+            document.getElementById('emoji').textContent = emojis[index];
+            document.getElementById('animal').textContent = zodiacs[index];
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Maintenance Calculator</title>
+    <meta name="description" content="Calculate your car maintenance and repair costs. Estimate annual expenses for oil changes, tires, and service with our free car maintenance calculator.">
+    <meta name="keywords" content="car maintenance calculator, auto maintenance cost calculator, vehicle maintenance calculator, car repair cost calculator, car ownership cost calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/transportation/car-maintenance.html">
+    <meta property="og:title" content="Car Maintenance Calculator">
+    <meta property="og:description" content="Calculate your car maintenance and repair costs. Estimate annual expenses for oil changes, tires, and service with our free car maintenance calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/transportation/car-maintenance.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Car Maintenance Calculator",
+        "description": "Calculate your car maintenance and repair costs. Estimate annual expenses for oil changes, tires, and service with our free car maintenance calculator.",
+        "url": "http://calculator.sotshau.fun/transportation/car-maintenance.html",
+        "applicationCategory": "TravelApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Russo One', sans-serif; background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); }
+        .calculator { background: #1a1a1a; border-radius: 20px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); width: 100%; max-width: 400px; }
+        h1 { color: #3498db; text-align: center; margin-bottom: 25px; font-size: 1.3rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #888; margin-bottom: 6px; font-family: sans-serif; font-size: 0.85rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #333; border-radius: 10px; font-size: 1rem; font-family: sans-serif; background: #2d2d2d; color: #fff; }
+        input:focus { outline: none; border-color: #3498db; }
+        button { width: 100%; padding: 16px; background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #2d2d2d; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .cost { font-size: 1.5rem; color: #3498db; }
+        .details { color: #888; font-family: sans-serif; font-size: 0.8rem; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🔧 Car Maintenance</h1>
+        <div class="input-group">
+            <label>Oil Change ($)</label>
+            <input type="number" id="oil" value="50">
+        </div>
+        <div class="input-group">
+            <label>Tires ($)</label>
+            <input type="number" id="tires" value="600">
+        </div>
+        <div class="input-group">
+            <label>Insurance/Month ($)</label>
+            <input type="number" id="insurance" value="150">
+        </div>
+        <div class="input-group">
+            <label>Other/Month ($)</label>
+            <input type="number" id="other" value="100">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="cost" id="monthly">$0</div>
+            <div class="details" id="yearly">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const oil = parseFloat(document.getElementById('oil').value) || 0;
+            const tires = parseFloat(document.getElementById('tires').value) || 0;
+            const insurance = parseFloat(document.getElementById('insurance').value) || 0;
+            const other = parseFloat(document.getElementById('other').value) || 0;
+            const monthly = oil/6 + insurance + other;
+            document.getElementById('monthly').textContent = '$' + monthly.toFixed(0) + '/month';
+            document.getElementById('yearly').textContent = 'Yearly: $' + (monthly * 12 + tires).toFixed(0);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

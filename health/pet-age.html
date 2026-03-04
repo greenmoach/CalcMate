@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Age Calculator</title>
+    <meta name="description" content="Calculate your pet's age in human years. Enter your dog's or cat's age to see how old they are in human years with our free pet age calculator.">
+    <meta name="keywords" content="pet age calculator, dog age calculator, cat age calculator, pet human years calculator, dog years calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/pet-age.html">
+    <meta property="og:title" content="Pet Age Calculator">
+    <meta property="og:description" content="Calculate your pet's age in human years. Enter your dog's or cat's age to see how old they are in human years with our free pet age calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/pet-age.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pet Age Calculator",
+        "description": "Calculate your pet's age in human years. Enter your dog's or cat's age to see how old they are in human years with our free pet age calculator.",
+        "url": "http://calculator.sotshau.fun/health/pet-age.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(252,182,159,0.4);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #e17055; text-align: center; margin-bottom: 25px; font-size: 1.8rem; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #d35400; margin-bottom: 8px; }
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #fab1a0;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #e17055; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e17055 0%, #fdcb6e 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .pet-age { font-size: 2.2rem; color: #d35400; }
+        .human-age { color: #e17055; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #e17055; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🐕 Pet Age Calculator</h1>
+        <div class="input-group">
+            <label>Pet Type</label>
+            <select id="petType">
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Pet's Age (years)</label>
+            <input type="number" id="petAge" placeholder="Enter pet's age">
+        </div>
+        <button onclick="calculatePetAge()">Calculate</button>
+        <div class="result" id="result">
+            <div class="pet-age" id="humanYears">0</div>
+            <div class="human-age">human years</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function calculatePetAge() {
+            const petType = document.getElementById('petType').value;
+            const petAge = parseFloat(document.getElementById('petAge').value);
+            
+            if (!petAge || petAge < 0) { alert('Please enter valid age'); return; }
+            
+            let humanYears;
+            if (petType === 'dog') {
+                if (petAge <= 1) humanYears = petAge * 15;
+                else if (petAge <= 2) humanYears = 15 + (petAge - 1) * 9;
+                else humanYears = 15 + 9 + (petAge - 2) * 5;
+            } else {
+                if (petAge <= 1) humanYears = petAge * 15;
+                else humanYears = 15 + (petAge - 1) * 9;
+            }
+            
+            document.getElementById('humanYears').textContent = Math.round(humanYears);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregnancy Due Date Calculator</title>
+    <meta name="description" content="Calculate your estimated due date based on your last menstrual period or conception date. Plan for your baby's arrival with our free due date calculator.">
+    <meta name="keywords" content="pregnancy due date calculator, due date calculator, baby due date calculator, pregnancy calculator, expected delivery date calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/pregnancy-due.html">
+    <meta property="og:title" content="Pregnancy Due Date Calculator">
+    <meta property="og:description" content="Calculate your estimated due date based on your last menstrual period or conception date. Plan for your baby's arrival with our free due date calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/pregnancy-due.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Pregnancy Due Date Calculator",
+        "description": "Calculate your estimated due date based on your last menstrual period or conception date. Plan for your baby's arrival with our free due date calculator.",
+        "url": "http://calculator.sotshau.fun/health/pregnancy-due.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comfortaa', cursive;
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(255,182,193,0.5);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #e84393; text-align: center; margin-bottom: 25px; font-size: 1.7rem; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #a29bfe; margin-bottom: 8px; font-size: 1.1rem; }
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #fd79a8;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #e84393; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,67,147,0.4); }
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; animation: pulse 0.5 @keyframes pulse { 0% { transform: scale(s; }
+       0.9); } 100% { transform: scale(1); } }
+        .due-date { font-size: 1.8rem; color: white; font-weight: 700; }
+        .week-day { color: #fff5f7; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #e84393; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>👶 Pregnancy Due Date</h1>
+        <div class="input-group">
+            <label>First Day of Last Period</label>
+            <input type="date" id="lastPeriod">
+        </div>
+        <button onclick="calculateDueDate()">Calculate Due Date</button>
+        <div class="result" id="result">
+            <div class="due-date" id="dueDate">-</div>
+            <div class="week-day" id="weekDay">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function calculateDueDate() {
+            const lastPeriod = document.getElementById('lastPeriod').value;
+            if (!lastPeriod) { alert('Please select a date'); return; }
+            
+            const date = new Date(lastPeriod);
+            date.setDate(date.getDate() + 280);
+            
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('dueDate').textContent = date.toLocaleDateString('en-US', options);
+            document.getElementById('weekDay').textContent = 'Week ' + 40;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

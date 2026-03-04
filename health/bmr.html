@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMR Calculator</title>
+    <meta name="description" content="Calculate your Basal Metabolic Rate (BMR) to understand how many calories your body burns at rest. Enter your age, gender, weight, and height.">
+    <meta name="keywords" content="BMR calculator, basal metabolic rate calculator, metabolism calculator, daily calorie needs calculator, BMR check">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/bmr.html">
+    <meta property="og:title" content="BMR Calculator">
+    <meta property="og:description" content="Calculate your Basal Metabolic Rate (BMR) to understand how many calories your body burns at rest. Enter your age, gender, weight, and height.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/bmr.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "BMR Calculator",
+        "description": "Calculate your Basal Metabolic Rate (BMR) to understand how many calories your body burns at rest. Enter your age, gender, weight, and height.",
+        "url": "http://calculator.sotshau.fun/health/bmr.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Fredoka', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(255,154,158,0.4);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #ff6b81; text-align: center; margin-bottom: 30px; font-size: 2rem; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #747d8c; margin-bottom: 8px; }
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #ffeaa7;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fff9e6;
+        }
+        input:focus, select:focus { outline: none; border-color: #ff6b81; background: white; }
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #ff6b81 0%, #ff9a9e 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover { transform: scale(1.02); box-shadow: 0 10px 30px rgba(255,107,129,0.4); }
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; animation: pop 0.4s; }
+        @keyframes pop { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
+        .calories { font-size: 2.5rem; color: #d63031; font-weight: 600; }
+        .label { color: #636e72; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #747d8c; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🔥 BMR Calculator</h1>
+        <div class="input-group">
+            <label>Age</label>
+            <input type="number" id="age" placeholder="Enter age">
+        </div>
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Height (cm)</label>
+            <input type="number" id="height" placeholder="Enter height">
+        </div>
+        <div class="input-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Enter weight">
+        </div>
+        <button onclick="calculateBMR()">Calculate BMR</button>
+        <div class="result" id="result">
+            <div class="calories" id="calories">0</div>
+            <div class="label">calories/day</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function calculateBMR() {
+            const age = parseFloat(document.getElementById('age').value);
+            const gender = document.getElementById('gender').value;
+            const height = parseFloat(document.getElementById('height').value);
+            const weight = parseFloat(document.getElementById('weight').value);
+            
+            if (!age || !height || !weight || age <= 0 || height <= 0 || weight <= 0) {
+                alert('Please enter valid values');
+                return;
+            }
+            
+            let bmr;
+            if (gender === 'male') {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+            
+            document.getElementById('result').classList.add('show');
+            document.getElementById('calories').textContent = Math.round(bmr);
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

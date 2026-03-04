@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarship Calculator</title>
+    <meta name="description" content="Calculate your scholarship eligibility and potential award amounts. Estimate how much financial aid you might receive with our free scholarship calculator.">
+    <meta name="keywords" content="scholarship calculator, financial aid calculator, college scholarship calculator, scholarship award calculator, tuition calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/education/scholarship.html">
+    <meta property="og:title" content="Scholarship Calculator">
+    <meta property="og:description" content="Calculate your scholarship eligibility and potential award amounts. Estimate how much financial aid you might receive with our free scholarship calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/education/scholarship.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Scholarship Calculator",
+        "description": "Calculate your scholarship eligibility and potential award amounts. Estimate how much financial aid you might receive with our free scholarship calculator.",
+        "url": "http://calculator.sotshau.fun/education/scholarship.html",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Righteous', cursive;
+            background: linear-gradient(135deg, #fdcb6e 0%, #f39c12 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #f39c12; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #ffeaa7;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #f39c12; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f39c12 0%, #fdcb6e 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-family: inherit;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .amount { font-size: 2rem; color: #d35400; }
+        .need { color: #4a5568; font-family: sans-serif; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #f39c12; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎁 Scholarship Aid</h1>
+        <div class="input-group">
+            <label>Annual Tuition ($)</label>
+            <input type="number" id="tuition" placeholder="Tuition cost">
+        </div>
+        <div class="input-group">
+            <label>Family Contribution ($)</label>
+            <input type="number" id="family" placeholder="Family can pay">
+        </div>
+        <button onclick="calculate()">Calculate Need</button>
+        <div class="result" id="result">
+            <div class="amount" id="need">$0</div>
+            <div class="need">Financial need per year</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const tuition = parseFloat(document.getElementById('tuition').value);
+            const family = parseFloat(document.getElementById('family').value) || 0;
+            
+            if (!tuition) { alert('Enter tuition'); return; }
+            
+            const need = Math.max(0, tuition - family);
+            document.getElementById('need').textContent = '$' + need.toLocaleString();
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

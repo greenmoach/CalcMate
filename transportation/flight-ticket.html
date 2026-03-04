@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Ticket Calculator</title>
+    <meta name="description" content="Calculate flight costs and compare ticket prices. Estimate your total travel expenses including taxes and fees with our free flight calculator.">
+    <meta name="keywords" content="flight ticket calculator, flight cost calculator, airline ticket price calculator, travel cost calculator, flight fare calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/transportation/flight-ticket.html">
+    <meta property="og:title" content="Flight Ticket Calculator">
+    <meta property="og:description" content="Calculate flight costs and compare ticket prices. Estimate your total travel expenses including taxes and fees with our free flight calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/transportation/flight-ticket.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Flight Ticket Calculator",
+        "description": "Calculate flight costs and compare ticket prices. Estimate your total travel expenses including taxes and fees with our free flight calculator.",
+        "url": "http://calculator.sotshau.fun/transportation/flight-ticket.html",
+        "applicationCategory": "TravelApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Russo One', sans-serif; background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%); }
+        .calculator { background: #1a1a1a; border-radius: 20px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); width: 100%; max-width: 400px; }
+        h1 { color: #9b59b6; text-align: center; margin-bottom: 25px; font-size: 1.3rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #888; margin-bottom: 6px; font-family: sans-serif; font-size: 0.85rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #333; border-radius: 10px; font-size: 1rem; font-family: sans-serif; background: #2d2d2d; color: #fff; }
+        input:focus { outline: none; border-color: #9b59b6; }
+        button { width: 100%; padding: 16px; background: linear-gradient(135deg, #8e44ad 0%, #3498db 100%); color: #fff; border: none; border-radius: 10px; font-size: 1rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #2d2d2d; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .total { font-size: 1.5rem; color: #9b59b6; }
+        .fees { color: #888; font-family: sans-serif; font-size: 0.75rem; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #888; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎫 Flight Ticket</h1>
+        <div class="input-group">
+            <label>Base Fare ($)</label>
+            <input type="number" id="base" placeholder="Ticket price">
+        </div>
+        <div class="input-group">
+            <label>Checked Bags</label>
+            <input type="number" id="bags" value="0" min="0">
+        </div>
+        <div class="input-group">
+            <label>Seat Selection ($)</label>
+            <input type="number" id="seat" value="0">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="total" id="total">$0</div>
+            <div class="fees" id="fees">Total cost</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const base = parseFloat(document.getElementById('base').value) || 0;
+            const bags = parseInt(document.getElementById('bags').value) || 0;
+            const seat = parseFloat(document.getElementById('seat').value) || 0;
+            const bagFee = bags * 30;
+            const total = base + bagFee + seat;
+            document.getElementById('total').textContent = '$' + total.toFixed(0);
+            document.getElementById('fees').textContent = 'Bags: $' + bagFee + ' | Seat: $' + seat;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

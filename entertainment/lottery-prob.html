@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lottery Probability Calculator</title>
+    <meta name="description" content="Calculate your chances of winning the lottery. Enter lottery rules to see the probability of winning different prize levels.">
+    <meta name="keywords" content="lottery probability calculator, lottery odds calculator, lottery chance calculator, win probability calculator, lottery expected value calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/entertainment/lottery-prob.html">
+    <meta property="og:title" content="Lottery Probability Calculator">
+    <meta property="og:description" content="Calculate your chances of winning the lottery. Enter lottery rules to see the probability of winning different prize levels.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/entertainment/lottery-prob.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Lottery Probability Calculator",
+        "description": "Calculate your chances of winning the lottery. Enter lottery rules to see the probability of winning different prize levels.",
+        "url": "http://calculator.sotshau.fun/entertainment/lottery-prob.html",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Fredoka One', cursive; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .calculator { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); width: 100%; max-width: 400px; }
+        h1 { color: #764ba2; text-align: center; margin-bottom: 25px; font-size: 1.5rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #333; margin-bottom: 8px; font-family: sans-serif; }
+        input { width: 100%; padding: 15px; border: 3px solid #e2e8f0; border-radius: 15px; font-size: 1rem; font-family: sans-serif; }
+        input:focus { outline: none; border-color: #764ba2; }
+        button { width: 100%; padding: 18px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: #fff; border: none; border-radius: 15px; font-size: 1.2rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: scale(1.02); }
+        .result { margin-top: 30px; padding: 25px; background: #f5f3ff; border-radius: 20px; display: none; }
+        .result.show { display: block; }
+        .prob { font-size: 1.8rem; color: #553c9a; }
+        .desc { font-family: sans-serif; color: #666; font-size: 0.8rem; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #764ba2; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🎰 Lottery Probability</h1>
+        <div class="input-group">
+            <label>Total Numbers in Pool</label>
+            <input type="number" id="pool" value="49" placeholder="e.g., 49">
+        </div>
+        <div class="input-group">
+            <label>Numbers to Pick</label>
+            <input type="number" id="pick" value="6" placeholder="e.g., 6">
+        </div>
+        <div class="input-group">
+            <label>Tickets Purchased</label>
+            <input type="number" id="tickets" value="1">
+        </div>
+        <button onclick="calculate()">Calculate Odds</button>
+        <div class="result" id="result">
+            <div class="prob" id="prob">1 in 0</div>
+            <div class="desc" id="desc">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const pool = parseInt(document.getElementById('pool').value);
+            const pick = parseInt(document.getElementById('pick').value);
+            const tickets = parseInt(document.getElementById('tickets').value);
+            if (!pool || !pick) { alert('Enter values'); return; }
+            let combinations = 1;
+            for (let i = 0; i < pick; i++) combinations *= (pool - i) / (i + 1);
+            const odds = combinations / tickets;
+            document.getElementById('prob').textContent = '1 in ' + Math.round(odds).toLocaleString();
+            document.getElementById('desc').textContent = tickets + ' ticket(s) in ' + pool + '/' + pick + ' lottery';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

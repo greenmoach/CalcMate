@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone Calculator</title>
+    <meta name="description" content="Convert time between different time zones easily. Find out what time it is in another city with our free time zone calculator.">
+    <meta name="keywords" content="time zone converter, timezone calculator, world clock calculator, time conversion calculator, city time calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/time-zone.html">
+    <meta property="og:title" content="Time Zone Calculator">
+    <meta property="og:description" content="Convert time between different time zones easily. Find out what time it is in another city with our free time zone calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/time-zone.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Time Zone Calculator",
+        "description": "Convert time between different time zones easily. Find out what time it is in another city with our free time zone calculator.",
+        "url": "http://calculator.sotshau.fun/lifestyle/time-zone.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(9,132,227,0.3);
+            width: 100%;
+            max-width: 450px;
+        }
+        h1 { color: #0984e3; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #74b9ff;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #0984e3; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0984e3 0%, #74b9ff 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .time { font-size: 2.5rem; color: #0984e3; font-weight: 700; }
+        .zone { color: #636e72; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #0984e3; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>⏰ Time Zone Converter</h1>
+        <div class="input-group">
+            <label>Time</label>
+            <input type="time" id="time">
+        </div>
+        <div class="input-group">
+            <label>From Time Zone</label>
+            <select id="fromZone">
+                <option value="-12">UTC-12</option>
+                <option value="-8">UTC-8 (PST)</option>
+                <option value="-5">UTC-5 (EST)</option>
+                <option value="0" selected>UTC+0 (GMT)</option>
+                <option value="1">UTC+1 (CET)</option>
+                <option value="8">UTC+8 (CST)</option>
+                <option value="9">UTC+9 (JST)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>To Time Zone</label>
+            <select id="toZone">
+                <option value="-8">UTC-8 (PST)</option>
+                <option value="-5">UTC-5 (EST)</option>
+                <option value="0">UTC+0 (GMT)</option>
+                <option value="1">UTC+1 (CET)</option>
+                <option value="8" selected>UTC+8 (CST)</option>
+                <option value="9">UTC+9 (JST)</option>
+            </select>
+        </div>
+        <button onclick="convertTime()">Convert</button>
+        <div class="result" id="result">
+            <div class="time" id="convertedTime">--:--</div>
+            <div class="zone" id="targetZone">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function convertTime() {
+            const time = document.getElementById('time').value;
+            const fromZone = parseInt(document.getElementById('fromZone').value);
+            const toZone = parseInt(document.getElementById('toZone').value);
+            
+            if (!time) { alert('Please select a time'); return; }
+            
+            const [hours, minutes] = time.split(':').map(Number);
+            let newHours = hours + (toZone - fromZone);
+            
+            if (newHours >= 24) newHours -= 24;
+            if (newHours < 0) newHours += 24;
+            
+            const display = newHours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
+            document.getElementById('convertedTime').textContent = display;
+            document.getElementById('targetZone').textContent = 'Time in zone UTC' + (toZone >= 0 ? '+' : '') + toZone;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

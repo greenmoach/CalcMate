@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Macro Calculator</title>
+    <meta name="description" content="Calculate your daily macronutrient needs for protein, carbs, and fats. Enter your calories and goals to get personalized macro ratios for your diet.">
+    <meta name="keywords" content="macro calculator, macronutrient calculator, protein carb fat calculator, IIFYM calculator, diet macro calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/fitness/macro.html">
+    <meta property="og:title" content="Macro Calculator">
+    <meta property="og:description" content="Calculate your daily macronutrient needs for protein, carbs, and fats. Enter your calories and goals to get personalized macro ratios for your diet.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/fitness/macro.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Macro Calculator",
+        "description": "Calculate your daily macronutrient needs for protein, carbs, and fats. Enter your calories and goals to get personalized macro ratios for your diet.",
+        "url": "http://calculator.sotshau.fun/fitness/macro.html",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #f857a6; text-align: center; margin-bottom: 20px; letter-spacing: 2px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; font-weight: 600; }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #fce4ec;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+            background: #fff5f7;
+        }
+        input:focus, select:focus { outline: none; border-color: #f857a6; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f857a6 0%, #ff5858 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffe2e2 0%, #fad0c4 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .macro { display: flex; justify-content: space-around; text-align: center; }
+        .macro-item { font-family: sans-serif; }
+        .macro-val { font-size: 1.5rem; color: #c44569; font-weight: 700; }
+        .macro-label { font-size: 0.8rem; color: #4a5568; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #f857a6; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🥗 MACRO CALCULATOR</h1>
+        <div class="input-group">
+            <label>Daily Calories</label>
+            <input type="number" id="calories" placeholder="Total daily calories">
+        </div>
+        <div class="input-group">
+            <label>Goal</label>
+            <select id="goal">
+                <option value="lose">Lose Weight (30/35/35)</option>
+                <option value="maintain" selected>Maintain (30/40/30)</option>
+                <option value="gain">Gain Muscle (30/50/20)</option>
+            </select>
+        </div>
+        <button onclick="calculate()">CALCULATE</button>
+        <div class="result" id="result">
+            <div class="macro">
+                <div class="macro-item">
+                    <div class="macro-val" id="protein">0g</div>
+                    <div class="macro-label">Protein</div>
+                </div>
+                <div class="macro-item">
+                    <div class="macro-val" id="carbs">0g</div>
+                    <div class="macro-label">Carbs</div>
+                </div>
+                <div class="macro-item">
+                    <div class="macro-val" id="fat">0g</div>
+                    <div class="macro-label">Fat</div>
+                </div>
+            </div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const calories = parseFloat(document.getElementById('calories').value);
+            const goal = document.getElementById('goal').value;
+            
+            if (!calories) { alert('Enter daily calories'); return; }
+            
+            const ratios = {
+                lose: { p: 0.30, c: 0.35, f: 0.35 },
+                maintain: { p: 0.30, c: 0.40, f: 0.30 },
+                gain: { p: 0.30, c: 0.50, f: 0.20 }
+            };
+            
+            const r = ratios[goal];
+            document.getElementById('protein').textContent = Math.round(calories * r.p / 4) + 'g';
+            document.getElementById('carbs').textContent = Math.round(calories * r.c / 4) + 'g';
+            document.getElementById('fat').textContent = Math.round(calories * r.f / 9) + 'g';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

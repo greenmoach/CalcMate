@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Number Calculator</title>
+    <meta name="description" content="Generate your lucky numbers based on your name and birthdate. Have fun with this random number generator for lottery and games.">
+    <meta name="keywords" content="lucky number calculator, lucky number generator, lottery number generator, random number generator, fortune number calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/entertainment/lucky-number.html">
+    <meta property="og:title" content="Lucky Number Calculator">
+    <meta property="og:description" content="Generate your lucky numbers based on your name and birthdate. Have fun with this random number generator for lottery and games.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/entertainment/lucky-number.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Lucky Number Calculator",
+        "description": "Generate your lucky numbers based on your name and birthdate. Have fun with this random number generator for lottery and games.",
+        "url": "http://calculator.sotshau.fun/entertainment/lucky-number.html",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Fredoka One', cursive; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .calculator { background: #fff; border-radius: 30px; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.3); width: 100%; max-width: 380px; text-align: center; }
+        h1 { color: #11998e; margin-bottom: 10px; font-size: 1.8rem; }
+        p { color: #666; font-family: sans-serif; margin-bottom: 25px; font-size: 0.9rem; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #333; margin-bottom: 8px; font-family: sans-serif; }
+        input { width: 100%; padding: 15px; border: 3px solid #d1f7c4; border-radius: 15px; font-size: 1rem; font-family: sans-serif; }
+        input:focus { outline: none; border-color: #11998e; }
+        button { width: 100%; padding: 18px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #fff; border: none; border-radius: 15px; font-size: 1.2rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: scale(1.02); }
+        .result { margin-top: 30px; padding: 30px; background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%); border-radius: 20px; display: none; }
+        .result.show { display: block; animation: pop 0.5s; }
+        @keyframes pop { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
+        .number { font-size: 4rem; color: #0c6658; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #11998e; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🍀 Lucky Number</h1>
+        <p>Enter your name or birthdate for your lucky number!</p>
+        <div class="input-group">
+            <label>Your Name or Birthdate</label>
+            <input type="text" id="input" placeholder="Enter something">
+        </div>
+        <button onclick="generate()">Get Lucky!</button>
+        <div class="result" id="result">
+            <div class="number" id="number">7</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function generate() {
+            const input = document.getElementById('input').value;
+            let seed = 0;
+            for (let i = 0; i < input.length; i++) seed += input.charCodeAt(i);
+            const lucky = (seed * 7 + 3) % 90 + 1;
+            document.getElementById('number').textContent = lucky;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

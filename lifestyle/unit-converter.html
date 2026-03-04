@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <meta name="description" content="Convert between units of measurement instantly. Length, weight, temperature, volume, area, and more. Free online unit converter tool.">
+    <meta name="keywords" content="unit converter, unit conversion calculator, length converter, weight converter, temperature converter, metric converter">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/unit-converter.html">
+    <meta property="og:title" content="Unit Converter">
+    <meta property="og:description" content="Convert between units of measurement instantly. Length, weight, temperature, volume, area, and more. Free online unit converter tool.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/unit-converter.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Unit Converter",
+        "description": "Convert between units of measurement instantly. Length, weight, temperature, volume, area, and more. Free online unit converter tool.",
+        "url": "http://calculator.sotshau.fun/lifestyle/unit-converter.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(108,92,231,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #6c5ce7; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #a29bfe;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #6c5ce7; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .value { font-size: 2rem; color: #6c5ce7; font-weight: 700; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #6c5ce7; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🔄 Unit Converter</h1>
+        <div class="input-group">
+            <label>Category</label>
+            <select id="category" onchange="updateUnits()">
+                <option value="length">Length</option>
+                <option value="weight">Weight</option>
+                <option value="temperature">Temperature</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Value</label>
+            <input type="number" id="value" placeholder="Enter value">
+        </div>
+        <div class="input-group">
+            <label>From</label>
+            <select id="fromUnit"></select>
+        </div>
+        <div class="input-group">
+            <label>To</label>
+            <select id="toUnit"></select>
+        </div>
+        <button onclick="convert()">Convert</button>
+        <div class="result" id="result">
+            <div class="value" id="resultValue">0</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        const units = {
+            length: ['meter', 'kilometer', 'centimeter', 'millimeter', 'mile', 'yard', 'foot', 'inch'],
+            weight: ['kilogram', 'gram', 'milligram', 'pound', 'ounce', 'ton'],
+            temperature: ['celsius', 'fahrenheit', 'kelvin']
+        };
+        
+        const factors = {
+            length: { meter: 1, kilometer: 1000, centimeter: 0.01, millimeter: 0.001, mile: 1609.344, yard: 0.9144, foot: 0.3048, inch: 0.0254 },
+            weight: { kilogram: 1, gram: 0.001, milligram: 0.000001, pound: 0.453592, ounce: 0.0283495, ton: 1000 }
+        };
+        
+        function updateUnits() {
+            const cat = document.getElementById('category').value;
+            const from = document.getElementById('fromUnit');
+            const to = document.getElementById('toUnit');
+            from.innerHTML = to.innerHTML = '';
+            units[cat].forEach(u => { from.add(new Option(u, u)); to.add(new Option(u, u)); });
+            to.selectedIndex = 1;
+        }
+        
+        function convert() {
+            const cat = document.getElementById('category').value;
+            const val = parseFloat(document.getElementById('value').value);
+            const from = document.getElementById('fromUnit').value;
+            const to = document.getElementById('toUnit').value;
+            
+            if (isNaN(val)) { alert('Enter a value'); return; }
+            
+            let result;
+            if (cat === 'temperature') {
+                let celsius = from === 'celsius' ? val : from === 'fahrenheit' ? (val - 32) * 5/9 : val - 273.15;
+                result = to === 'celsius' ? celsius : to === 'fahrenheit' ? celsius * 9/5 + 32 : celsius + 273.15;
+            } else {
+                result = val * factors[cat][from] / factors[cat][to];
+            }
+            
+            document.getElementById('resultValue').textContent = result.toFixed(4);
+            document.getElementById('result').classList.add('show');
+        }
+        
+        updateUnits();
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

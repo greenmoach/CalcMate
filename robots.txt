@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://calculator.sotshau.fun/sitemap.xml

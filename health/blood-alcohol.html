@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Alcohol Calculator</title>
+    <meta name="description" content="Estimate your blood alcohol concentration (BAC) based on drinks consumed, weight, and gender. Use our free blood alcohol calculator responsibly.">
+    <meta name="keywords" content="blood alcohol calculator, BAC calculator, alcohol level calculator, drunk calculator, drink calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/blood-alcohol.html">
+    <meta property="og:title" content="Blood Alcohol Calculator">
+    <meta property="og:description" content="Estimate your blood alcohol concentration (BAC) based on drinks consumed, weight, and gender. Use our free blood alcohol calculator responsibly.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/blood-alcohol.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Blood Alcohol Calculator",
+        "description": "Estimate your blood alcohol concentration (BAC) based on drinks consumed, weight, and gender. Use our free blood alcohol calculator responsibly.",
+        "url": "http://calculator.sotshau.fun/health/blood-alcohol.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #2d3436 0%, #636e72 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #00cec9; text-align: center; margin-bottom: 20px; font-size: 1.6rem; }
+        .warning {
+            background: #ff7675;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #2d3436; margin-bottom: 6px; font-weight: 700; }
+        input, select {
+            width: 100%;
+            padding: 13px;
+            border: 2px solid #dfe6e9;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #00cec9; }
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #00cec9 0%, #81ecec 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 900;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .bac { font-size: 2rem; font-weight: 900; }
+        .time { margin-top: 8px; font-weight: 700; }
+        .safe { background: #55efc4; color: #006266; }
+        .caution { background: #fdcb6e; color: #2d3436; }
+        .danger { background: #ff7675; color: white; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #636e72; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🍺 Blood Alcohol Calculator</h1>
+        <div class="warning">⚠️ This is for educational purposes only. Don't drink and drive!</div>
+        <div class="input-group">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Weight (kg)</label>
+            <input type="number" id="weight" placeholder="Enter weight">
+        </div>
+        <div class="input-group">
+            <label>Drinks Consumed</label>
+            <input type="number" id="drinks" placeholder="Number of drinks">
+        </div>
+        <div class="input-group">
+            <label>Hours Since Last Drink</label>
+            <input type="number" id="hours" placeholder="Hours">
+        </div>
+        <button onclick="calculateBAC()">Calculate</button>
+        <div class="result" id="result">
+            <div class="bac" id="bacValue">0.00%</div>
+            <div class="time" id="soberTime">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateBAC() {
+            const gender = document.getElementById('gender').value;
+            const weight = parseFloat(document.getElementById('weight').value);
+            const drinks = parseFloat(document.getElementById('drinks').value);
+            const hours = parseFloat(document.getElementById('hours').value);
+            
+            if (!weight || !drinks || !hours) { alert('Please fill all fields'); return; }
+            
+            const alcoholGrams = drinks * 14;
+            const r = gender === 'male' ? 0.68 : 0.55;
+            const bac = ((alcoholGrams / (weight * 1000)) * 100) - (hours * 0.015);
+            const bacFinal = Math.max(0, bac);
+            
+            let resultClass, soberTime;
+            if (bacFinal < 0.02) { resultClass = 'safe'; soberTime = 'Safe to drive'; }
+            else if (bacFinal < 0.08) { resultClass = 'caution'; soberTime = 'Wait before driving'; }
+            else { resultClass = 'danger'; soberTime = 'Do NOT drive!'; }
+            
+            const result = document.getElementById('result');
+            result.className = 'result show ' + resultClass;
+            document.getElementById('bacValue').textContent = bacFinal.toFixed(3) + '%';
+            document.getElementById('soberTime').textContent = soberTime;
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

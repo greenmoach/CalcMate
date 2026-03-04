@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Hours Calculator</title>
+    <meta name="description" content="Calculate your total work hours and overtime easily. Enter your clock in and out times to track your weekly hours with our free work hours calculator.">
+    <meta name="keywords" content="work hours calculator, hours calculator, overtime calculator, time card calculator, work time tracker">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/work-hours.html">
+    <meta property="og:title" content="Work Hours Calculator">
+    <meta property="og:description" content="Calculate your total work hours and overtime easily. Enter your clock in and out times to track your weekly hours with our free work hours calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/work-hours.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Work Hours Calculator",
+        "description": "Calculate your total work hours and overtime easily. Enter your clock in and out times to track your weekly hours with our free work hours calculator.",
+        "url": "http://calculator.sotshau.fun/lifestyle/work-hours.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,184,148,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #00b894; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #55efc4;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus { outline: none; border-color: #00b894; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00b894 0%, #55efc4 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #d1f7c4 0%, #a8e6cf 100%);
+            border-radius: 15px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; }
+        .hours { font-size: 2.2rem; color: #006266; font-weight: 700; }
+        .details { color: #4a5568; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #006266; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>⏱️ Work Hours Calculator</h1>
+        <div class="input-group">
+            <label>Hourly Wage ($)</label>
+            <input type="number" id="wage" placeholder="Enter hourly rate">
+        </div>
+        <div class="input-group">
+            <label>Regular Hours</label>
+            <input type="number" id="regularHours" value="40">
+        </div>
+        <div class="input-group">
+            <label>Overtime Hours</label>
+            <input type="number" id="overtimeHours" value="0">
+        </div>
+        <div class="input-group">
+            <label>Overtime Multiplier</label>
+            <input type="number" id="multiplier" value="1.5" step="0.5">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="hours" id="totalPay">$0</div>
+            <div class="details" id="breakdown">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const wage = parseFloat(document.getElementById('wage').value);
+            const regular = parseFloat(document.getElementById('regularHours').value);
+            const overtime = parseFloat(document.getElementById('overtimeHours').value);
+            const multiplier = parseFloat(document.getElementById('multiplier').value);
+            
+            if (!wage) { alert('Enter hourly wage'); return; }
+            
+            const regularPay = regular * wage;
+            const overtimePay = overtime * wage * multiplier;
+            const total = regularPay + overtimePay;
+            
+            document.getElementById('totalPay').textContent = '$' + total.toFixed(2);
+            document.getElementById('breakdown').innerHTML = 'Regular: $' + regularPay.toFixed(2) + '<br>Overtime: $' + overtimePay.toFixed(2);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

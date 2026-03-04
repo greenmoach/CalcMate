@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Packet Calculator</title>
+    <meta name="description" content="Calculate red envelope amounts for Chinese New Year and other occasions. Distribute lucky money fairly among recipients with our free red packet calculator.">
+    <meta name="keywords" content="red packet calculator, hongbao calculator, red envelope calculator, Chinese New Year money calculator, 红包计算器">
+    <link rel="canonical" href="http://calculator.sotshau.fun/entertainment/red-packet.html">
+    <meta property="og:title" content="Red Packet Calculator">
+    <meta property="og:description" content="Calculate red envelope amounts for Chinese New Year and other occasions. Distribute lucky money fairly among recipients with our free red packet calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/entertainment/red-packet.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Red Packet Calculator",
+        "description": "Calculate red envelope amounts for Chinese New Year and other occasions. Distribute lucky money fairly among recipients with our free red packet calculator.",
+        "url": "http://calculator.sotshau.fun/entertainment/red-packet.html",
+        "applicationCategory": "EntertainmentApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Fredoka One', cursive; background: linear-gradient(135deg, #c31432 0%, #240b36 100%); }
+        .calculator { background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%); border-radius: 30px; padding: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); width: 100%; max-width: 380px; text-align: center; }
+        h1 { color: #ffd700; margin-bottom: 25px; font-size: 1.6rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #fff; margin-bottom: 8px; font-family: sans-serif; }
+        input, select { width: 100%; padding: 15px; border: 3px solid #ffd700; border-radius: 15px; font-size: 1rem; font-family: sans-serif; background: #fff; }
+        input:focus, select:focus { outline: none; border-color: #ffd700; }
+        button { width: 100%; padding: 18px; background: #ffd700; color: #c0392b; border: none; border-radius: 15px; font-size: 1.2rem; font-family: inherit; cursor: pointer; font-weight: bold; }
+        button:hover { transform: scale(1.02); }
+        .result { margin-top: 30px; padding: 30px; background: #ffd700; border-radius: 20px; display: none; }
+        .result.show { display: block; animation: pulse 0.5s; }
+        @keyframes pulse { 0% { transform: scale(0.8); } 100% { transform: scale(1); } }
+        .amount { font-size: 2.5rem; color: #c0392b; }
+        .desc { font-family: sans-serif; color: #c0392b; font-size: 0.8rem; margin-top: 5px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #ffd700; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🧧 Red Packet</h1>
+        <div class="input-group">
+            <label>Relationship</label>
+            <select id="relationship">
+                <option value="parent">Child</option>
+                <option value="grandchild">Grandchild</option>
+                <option value="nephew">Nephew/Niece</option>
+                <option value="friend">Friend</option>
+                <option value="coworker">Coworker</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Number of Recipients</label>
+            <input type="number" id="count" value="1">
+        </div>
+        <button onclick="calculate()">Calculate Amount</button>
+        <div class="result" id="result">
+            <div class="amount" id="amount">$0</div>
+            <div class="desc" id="desc">per person</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const rel = document.getElementById('relationship').value;
+            const count = parseInt(document.getElementById('count').value) || 1;
+            const amounts = { parent: 2000, grandchild: 500, nephew: 200, friend: 100, coworker: 50 };
+            const base = amounts[rel] || 100;
+            const total = base * count;
+            document.getElementById('amount').textContent = '$' + total;
+            document.getElementById('desc').textContent = count + ' person(s) - Traditional range';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

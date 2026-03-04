@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Rep Max Calculator</title>
+    <meta name="description" content="Calculate your one-rep max (1RM) to optimize your weight training. Based on common formulas like Epley, Brzycki, and Lander. Track your strength progress.">
+    <meta name="keywords" content="one rep max calculator, 1RM calculator, weight training calculator, max lift calculator, strength calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/fitness/one-rep-max.html">
+    <meta property="og:title" content="One Rep Max Calculator">
+    <meta property="og:description" content="Calculate your one-rep max (1RM) to optimize your weight training. Based on common formulas like Epley, Brzycki, and Lander. Track your strength progress.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/fitness/one-rep-max.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "One Rep Max Calculator",
+        "description": "Calculate your one-rep max (1RM) to optimize your weight training. Based on common formulas like Epley, Brzycki, and Lander. Track your strength progress.",
+        "url": "http://calculator.sotshau.fun/fitness/one-rep-max.html",
+        "applicationCategory": "SportsApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Bebas Neue', sans-serif;
+            background: linear-gradient(135deg, #20002c 0%, #cbb4d4 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #20002c; text-align: center; margin-bottom: 25px; letter-spacing: 2px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-family: sans-serif; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: sans-serif;
+        }
+        input:focus { outline: none; border-color: #20002c; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #20002c 0%, #cbb4d4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #e8e8e8 0%, #cbb4d4 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .orm { font-size: 2.5rem; color: #20002c; letter-spacing: 2px; }
+        .percentages { margin-top: 15px; font-size: 0.9rem; color: #4a5568; font-family: sans-serif; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #4a5568; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏆 ONE REP MAX</h1>
+        <div class="input-group">
+            <label>Weight (kg/lbs)</label>
+            <input type="number" id="weight" placeholder="Weight lifted">
+        </div>
+        <div class="input-group">
+            <label>Reps Performed</label>
+            <input type="number" id="reps" placeholder="Number of reps">
+        </div>
+        <button onclick="calculateORM()">CALCULATE</button>
+        <div class="result" id="result">
+            <div class="orm" id="ormValue">0</div>
+            <div class="percentages" id="percentages"></div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculateORM() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const reps = parseInt(document.getElementById('reps').value);
+            
+            if (!weight || !reps) { alert('Enter weight and reps'); return; }
+            
+            const orm = weight * (1 + reps / 30);
+            
+            let percentages = '<br>95%: ' + Math.round(orm * 0.95) + '<br>90%: ' + Math.round(orm * 0.90) + '<br>85%: ' + Math.round(orm * 0.85) + '<br>80%: ' + Math.round(orm * 0.80) + '<br>75%: ' + Math.round(orm * 0.75) + '<br>70%: ' + Math.round(orm * 0.70);
+            
+            document.getElementById('ormValue').textContent = Math.round(orm);
+            document.getElementById('percentages').innerHTML = percentages;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

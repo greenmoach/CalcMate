@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovulation Calculator</title>
+    <meta name="description" content="Calculate your ovulation date and fertile window based on your menstrual cycle. Plan for pregnancy with our free ovulation calculator.">
+    <meta name="keywords" content="ovulation calculator, fertility calculator, ovulation date calculator, fertile window calculator, menstrual cycle calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/health/ovulation.html">
+    <meta property="og:title" content="Ovulation Calculator">
+    <meta property="og:description" content="Calculate your ovulation date and fertile window based on your menstrual cycle. Plan for pregnancy with our free ovulation calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/health/ovulation.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Ovulation Calculator",
+        "description": "Calculate your ovulation date and fertile window based on your menstrual cycle. Plan for pregnancy with our free ovulation calculator.",
+        "url": "http://calculator.sotshau.fun/health/ovulation.html",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comfortaa', cursive;
+            background: linear-gradient(135deg, #ffe4e1 0%, #ffb6c1 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(255,182,193,0.5);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #e84393; text-align: center; margin-bottom: 25px; font-size: 1.7rem; }
+        .input-group { margin-bottom: 20px; }
+        label { display: block; color: #a29bfe; margin-bottom: 8px; font-size: 1.1rem; }
+        input, select {
+            width: 100%;
+            padding: 15px;
+            border: 3px solid #fd79a8;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #e84393; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,67,147,0.4); }
+        .result {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+            border-radius: 20px;
+            text-align: center;
+            display: none;
+        }
+        .result.show { display: block; animation: pulse 0.5s ease-out; }
+        @keyframes pulse { 0% { transform: scale(0.9); } 100% { transform: scale(1); } }
+        .ovulation { font-size: 1.3rem; color: white; font-weight: 700; margin-bottom: 10px; }
+        .fertile { color: #fff5f7; font-size: 0.9rem; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #e84393; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🩺 Ovulation Calculator</h1>
+        <div class="input-group">
+            <label>First Day of Last Period</label>
+            <input type="date" id="lastPeriod">
+        </div>
+        <div class="input-group">
+            <label>Cycle Length (days)</label>
+            <select id="cycleLength">
+                <option value="28">28 days (typical)</option>
+                <option value="30">30 days</option>
+                <option value="32">32 days</option>
+                <option value="26">26 days</option>
+            </select>
+        </div>
+        <button onclick="calculateOvulation()">Calculate</button>
+        <div class="result" id="result">
+            <div class="ovulation" id="ovulationDate">-</div>
+            <div class="fertile" id="fertileWindow">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        function calculateOvulation() {
+            const lastPeriod = document.getElementById('lastPeriod').value;
+            const cycleLength = parseInt(document.getElementById('cycleLength').value);
+            
+            if (!lastPeriod) { alert('Please select a date'); return; }
+            
+            const date = new Date(lastPeriod);
+            const ovulationDay = date.getTime() + (cycleLength - 14) * 24 * 60 * 60 * 1000;
+            const ovulation = new Date(ovulationDay);
+            
+            const fertileStart = new Date(ovulation.getTime() - 5 * 24 * 60 * 60 * 1000);
+            const fertileEnd = new Date(ovulation.getTime() + 1 * 24 * 60 * 60 * 1000);
+            
+            document.getElementById('ovulationDate').textContent = 'Ovulation: ' + ovulation.toLocaleDateString();
+            document.getElementById('fertileWindow').textContent = 'Fertile: ' + fertileStart.toLocaleDateString() + ' - ' + fertileEnd.toLocaleDateString();
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

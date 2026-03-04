@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Cost Calculator</title>
+    <meta name="description" content="Calculate your monthly and yearly food expenses. Track grocery costs and dining expenses to budget better with our free food cost calculator.">
+    <meta name="keywords" content="food cost calculator, grocery cost calculator, monthly food expense calculator, meal cost calculator, food budget calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/utility/food-cost.html">
+    <meta property="og:title" content="Food Cost Calculator">
+    <meta property="og:description" content="Calculate your monthly and yearly food expenses. Track grocery costs and dining expenses to budget better with our free food cost calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/utility/food-cost.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Food Cost Calculator",
+        "description": "Calculate your monthly and yearly food expenses. Track grocery costs and dining expenses to budget better with our free food cost calculator.",
+        "url": "http://calculator.sotshau.fun/utility/food-cost.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { min-height: 100vh; display: flex; justify-content: center; align-items: center; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); }
+        .calculator { background: #1a1a2e; border-radius: 20px; padding: 35px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); width: 100%; max-width: 400px; }
+        h1 { color: #38ef7d; text-align: center; margin-bottom: 25px; font-size: 1.2rem; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #a0a0a0; margin-bottom: 6px; font-size: 0.8rem; }
+        input { width: 100%; padding: 14px; border: 2px solid #333; border-radius: 10px; font-size: 1rem; font-family: sans-serif; background: #16213e; color: #fff; }
+        input:focus { outline: none; border-color: #38ef7d; }
+        button { width: 100%; padding: 16px; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: #1a1a2e; border: none; border-radius: 10px; font-size: 1rem; font-family: inherit; cursor: pointer; }
+        button:hover { transform: translateY(-2px); }
+        .result { margin-top: 25px; padding: 25px; background: #16213e; border-radius: 15px; display: none; }
+        .result.show { display: block; }
+        .budget { font-size: 1.5rem; color: #38ef7d; }
+        .breakdown { color: #a0a0a0; font-family: sans-serif; font-size: 0.75rem; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #a0a0a0; text-decoration: none; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🍔 Food Budget</h1>
+        <div class="input-group">
+            <label>Daily Budget ($)</label>
+            <input type="number" id="budget" placeholder="Per day">
+        </div>
+        <div class="input-group">
+            <label>Meals per Day</label>
+            <input type="number" id="meals" value="3">
+        </div>
+        <button onclick="calculate()">Calculate</button>
+        <div class="result" id="result">
+            <div class="budget" id="perMeal">$0</div>
+            <div class="breakdown" id="breakdown">per meal</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const budget = parseFloat(document.getElementById('budget').value);
+            const meals = parseInt(document.getElementById('meals').value) || 3;
+            if (!budget) { alert('Enter budget'); return; }
+            const perMeal = budget / meals;
+            document.getElementById('perMeal').textContent = '$' + perMeal.toFixed(2);
+            document.getElementById('breakdown').innerHTML = 'Per meal<br>Monthly: $' + (budget * 30).toFixed(0);
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

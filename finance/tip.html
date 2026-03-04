@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Calculator</title>
+    <meta name="description" content="Calculate tips quickly and easily. Enter your bill amount, tip percentage, and number of people to split the bill fairly.">
+    <meta name="keywords" content="tip calculator, tip splitter calculator, bill split calculator, restaurant tip calculator, gratuity calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/finance/tip.html">
+    <meta property="og:title" content="Tip Calculator">
+    <meta property="og:description" content="Calculate tips quickly and easily. Enter your bill amount, tip percentage, and number of people to split the bill fairly.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/finance/tip.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Tip Calculator",
+        "description": "Calculate tips quickly and easily. Enter your bill amount, tip percentage, and number of people to split the bill fairly.",
+        "url": "http://calculator.sotshau.fun/finance/tip.html",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(255,154,158,0.3);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 { color: #e84393; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 600; }
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #fce4ec;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: #fff5f7;
+        }
+        input:focus { outline: none; border-color: #e84393; }
+        .tip-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .tip-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #fce4ec;
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-weight: 600;
+            color: #e84393;
+            transition: all 0.2s;
+        }
+        .tip-btn.active, .tip-btn:hover {
+            background: #e84393;
+            color: white;
+            border-color: #e84393;
+        }
+        button.calc {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #e84393 0%, #fd79a8 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .total { font-size: 1.8rem; color: #d63031; font-weight: 800; }
+        .per-person { color: #636e72; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #636e72; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🍽️ Tip Calculator</h1>
+        <div class="input-group">
+            <label>Bill Amount ($)</label>
+            <input type="number" id="bill" placeholder="Enter bill amount">
+        </div>
+        <div class="input-group">
+            <label>Tip Percentage</label>
+            <div class="tip-buttons">
+                <button class="tip-btn" onclick="setTip(10)">10%</button>
+                <button class="tip-btn" onclick="setTip(15)">15%</button>
+                <button class="tip-btn active" onclick="setTip(20)">20%</button>
+                <button class="tip-btn" onclick="setTip(25)">25%</button>
+            </div>
+        </div>
+        <div class="input-group">
+            <label>Number of People</label>
+            <input type="number" id="people" value="1" placeholder="Split between">
+        </div>
+        <button class="calc" onclick="calculateTip()">Calculate</button>
+        <div class="result" id="result">
+            <div class="total" id="totalAmount">$0</div>
+            <div class="per-person" id="perPerson">$0 each</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </div>
+    <script>
+        let tipPercent = 20;
+        
+        function setTip(percent) {
+            tipPercent = percent;
+            document.querySelectorAll('.tip-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+        
+        function calculateTip() {
+            const bill = parseFloat(document.getElementById('bill').value);
+            const people = parseInt(document.getElementById('people').value) || 1;
+            
+            if (!bill) { alert('Please enter bill amount'); return; }
+            
+            const tip = bill * (tipPercent / 100);
+            const total = bill + tip;
+            const perPerson = total / people;
+            
+            document.getElementById('totalAmount').textContent = '$' + total.toFixed(2);
+            document.getElementById('perPerson').textContent = '$' + perPerson.toFixed(2) + ' each';
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>

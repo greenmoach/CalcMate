@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Calculator</title>
+    <meta name="description" content="Calculate your remaining leave days and vacation time. Enter your start date and leave balance to see your available days with our free leave calculator.">
+    <meta name="keywords" content="leave calculator, vacation days calculator, annual leave calculator, PTO calculator, holiday calculator">
+    <link rel="canonical" href="http://calculator.sotshau.fun/lifestyle/leave.html">
+    <meta property="og:title" content="Leave Calculator">
+    <meta property="og:description" content="Calculate your remaining leave days and vacation time. Enter your start date and leave balance to see your available days with our free leave calculator.">
+    <meta property="og:url" content="http://calculator.sotshau.fun/lifestyle/leave.html">
+    <meta property="og:type" content="website">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Leave Calculator",
+        "description": "Calculate your remaining leave days and vacation time. Enter your start date and leave balance to see your available days with our free leave calculator.",
+        "url": "http://calculator.sotshau.fun/lifestyle/leave.html",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "All"
+    }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #81ecec 0%, #00cec9 100%);
+        }
+        .calculator {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            box-shadow: 0 25px 50px rgba(0,206,201,0.3);
+            width: 100%;
+            max-width: 420px;
+        }
+        h1 { color: #00cec9; text-align: center; margin-bottom: 25px; }
+        .input-group { margin-bottom: 18px; }
+        label { display: block; color: #4a5568; margin-bottom: 6px; font-weight: 700; }
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 3px solid #81ecec;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        input:focus, select:focus { outline: none; border-color: #00cec9; }
+        button {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #00cec9 0%, #81ecec 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        button:hover { transform: translateY(-2px); }
+        .result {
+            margin-top: 25px;
+            padding: 25px;
+            background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%);
+            border-radius: 15px;
+            display: none;
+        }
+        .result.show { display: block; }
+        .days { font-size: 2rem; color: #00b894; font-weight: 700; }
+        .details { color: #636e72; margin-top: 8px; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #00cec9; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>🏖️ Leave Calculator</h1>
+        <div class="input-group">
+            <label>Leave Type</label>
+            <select id="leaveType">
+                <option value="annual">Annual Leave</option>
+                <option value="sick">Sick Leave</option>
+                <option value="personal">Personal Leave</option>
+                <option value="maternity">Maternity Leave</option>
+                <option value="paternity">Paternity Leave</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>Start Date</label>
+            <input type="date" id="startDate">
+        </div>
+        <div class="input-group">
+            <label>End Date</label>
+            <input type="date" id="endDate">
+        </div>
+        <button onclick="calculate()">Calculate Days</button>
+        <div class="result" id="result">
+            <div class="days" id="daysCount">0 days</div>
+            <div class="details" id="weekends">-</div>
+        </div>
+        <a href="../../index.html" class="back-link">← Back to Home</a>
+    </script>
+    <script>
+        function calculate() {
+            const start = new Date(document.getElementById('startDate').value);
+            const end = new Date(document.getElementById('endDate').value);
+            
+            if (isNaN(start) || isNaN(end)) { alert('Select dates'); return; }
+            
+            let days = 0, weekends = 0;
+            let current = new Date(start);
+            
+            while (current <= end) {
+                const day = current.getDay();
+                if (day !== 0 && day !== 6) days++;
+                else weekends++;
+                current.setDate(current.getDate() + 1);
+            }
+            
+            document.getElementById('daysCount').textContent = days + ' working days';
+            document.getElementById('weekends').textContent = 'Weekend days: ' + weekends;
+            document.getElementById('result').classList.add('show');
+        }
+    </script>
+    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
+        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
+    </footer>
+</body>
+</html>
