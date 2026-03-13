@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator Hub - 60+ Free Online Calculators</title>
+    <title>CalcMate - 60+ Free Online Calculators</title>
     <link rel="icon" type="image/png" href="favicon.ico">
     <link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
-    <meta name="theme-color" content="#e94560">
-    <meta name="description" content="Access 60+ free online calculators for finance, health, fitness, education, and more. Calculate loan payments, BMI, GPA, unit conversions, and more instantly.">
-    <meta name="keywords" content="online calculator, free calculator, calculator hub, all calculators, financial calculator, health calculator, fitness calculator">
+    <meta name="theme-color" content="#ff7a59">
+    <meta name="description" content="Explore 60+ free online calculators for money, health, study, travel, and everyday life. Find a calculator fast and get instant answers.">
+    <meta name="keywords" content="online calculator, free calculator, calcmate, calculator hub, financial calculator, health calculator, unit converter">
     <link rel="canonical" href="http://calculator.sotshau.fun/index.html">
-    <meta property="og:title" content="Calculator Hub - 60+ Free Online Calculators">
-    <meta property="og:description" content="Access 60+ free online calculators for finance, health, fitness, education, and more. Calculate loan payments, BMI, GPA, unit conversions, and more instantly.">
+    <meta property="og:title" content="CalcMate - 60+ Free Online Calculators">
+    <meta property="og:description" content="Explore 60+ free online calculators for money, health, study, travel, and everyday life.">
     <meta property="og:url" content="http://calculator.sotshau.fun/index.html">
     <meta property="og:type" content="website">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        "name": "Calculator Hub",
-        "description": "Access 60+ free online calculators for finance, health, fitness, education, and more.",
+        "name": "CalcMate",
+        "description": "Explore 60+ free online calculators for money, health, study, travel, and everyday life.",
         "url": "http://calculator.sotshau.fun/index.html",
         "potentialAction": {
             "@type": "SearchAction",
@@ -30,505 +30,1671 @@
         }
     }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: oklch(96% 0.026 52);
+            --bg-soft: oklch(98% 0.018 75);
+            --surface: oklch(99% 0.012 60);
+            --surface-strong: oklch(93% 0.03 45);
+            --ink: oklch(28% 0.05 20);
+            --ink-soft: oklch(44% 0.04 28);
+            --line: oklch(84% 0.05 35);
+            --hero: oklch(74% 0.2 35);
+            --hero-deep: oklch(62% 0.16 24);
+            --hero-soft: oklch(92% 0.06 38);
+            --accent: oklch(72% 0.16 194);
+            --accent-soft: oklch(92% 0.05 195);
+            --highlight: oklch(81% 0.14 98);
+            --shadow: 0 24px 60px color-mix(in oklab, var(--hero-deep) 20%, transparent);
+            --radius-xl: 2rem;
+            --radius-lg: 1.35rem;
+            --radius-md: 1rem;
+            --radius-sm: 0.75rem;
+            --space-1: 0.25rem;
+            --space-2: 0.5rem;
+            --space-3: 0.75rem;
+            --space-4: 1rem;
+            --space-5: 1.5rem;
+            --space-6: 2rem;
+            --space-7: 3rem;
+            --space-8: 4rem;
+            --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: "Plus Jakarta Sans", sans-serif;
+            background:
+                radial-gradient(circle at top left, oklch(99% 0.06 82) 0, transparent 28%),
+                radial-gradient(circle at top right, oklch(95% 0.05 205) 0, transparent 30%),
+                linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 100%);
+            color: var(--ink);
             min-height: 100vh;
-            padding: 40px 20px;
+            line-height: 1.6;
+            padding: 1.5rem;
+            overflow-x: hidden;
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            width: 18rem;
+            height: 18rem;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(8px);
+            opacity: 0.45;
         }
 
-        .header h1 {
-            color: #fff;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+        body::before {
+            background: radial-gradient(circle, oklch(83% 0.16 35) 0, transparent 68%);
+            top: -4rem;
+            right: -3rem;
         }
 
-        .header p {
-            color: #a0a0a0;
-            font-size: 1.1rem;
+        body::after {
+            background: radial-gradient(circle, oklch(87% 0.12 200) 0, transparent 70%);
+            bottom: -6rem;
+            left: -3rem;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+            max-width: 78rem;
+            margin: 0 auto;
+        }
+
+        .utility-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1rem;
+        }
+
+        .utility-badges,
+        .utility-links,
+        .hero-tags,
+        .quick-launch,
+        .category-links,
+        .section-badges,
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        .pill,
+        .quick-link,
+        .section-badge,
+        .mini-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            min-height: 2.75rem;
+            padding: 0.7rem 1rem;
+            border-radius: 999px;
+            text-decoration: none;
+            border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+            background: color-mix(in oklab, var(--surface) 92%, var(--hero-soft));
+            color: var(--ink);
+            transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart), border-color 180ms var(--ease-out-quart);
+        }
+
+        .pill--warm {
+            background: color-mix(in oklab, var(--highlight) 72%, var(--surface));
+        }
+
+        .pill--accent {
+            background: color-mix(in oklab, var(--accent-soft) 74%, var(--surface));
+        }
+
+        .mini-link {
+            min-height: auto;
+            padding: 0.2rem 0;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            text-decoration: underline;
+            text-decoration-thickness: 0.12em;
+            text-underline-offset: 0.18em;
+        }
+
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.95fr);
+            gap: clamp(1.25rem, 3vw, 2.5rem);
+            margin-bottom: clamp(2rem, 5vw, 4rem);
+            padding: clamp(1.5rem, 4vw, 2.5rem);
+            background: linear-gradient(145deg, var(--hero) 0%, color-mix(in oklab, var(--hero) 82%, var(--highlight)) 48%, var(--accent) 100%);
+            border-radius: 2.25rem;
+            box-shadow: var(--shadow);
+            overflow: clip;
+            isolation: isolate;
+        }
+
+        .hero::before,
+        .hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .hero::before {
+            width: 14rem;
+            height: 14rem;
+            background: color-mix(in oklab, var(--surface) 78%, transparent);
+            border-radius: 46% 54% 56% 44%;
+            top: -4rem;
+            right: 26%;
+            transform: rotate(18deg);
+        }
+
+        .hero::after {
+            width: 18rem;
+            height: 18rem;
+            right: -4rem;
+            bottom: -5rem;
+            background: radial-gradient(circle, color-mix(in oklab, var(--surface) 75%, transparent) 0, transparent 70%);
+        }
+
+        .hero-copy,
+        .search-panel,
+        .category,
+        .footer {
+            animation: rise-in 700ms var(--ease-out-expo) both;
+        }
+
+        .hero-copy {
+            display: grid;
+            gap: 1.25rem;
+            align-content: start;
+        }
+
+        .hero-label,
+        .category-kicker,
+        .search-label,
+        .section-count,
+        .footer-note {
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .hero-label {
+            color: color-mix(in oklab, var(--ink) 86%, var(--surface));
+        }
+
+        .hero h1 {
+            font-family: "Fredoka", sans-serif;
+            font-size: clamp(3rem, 6vw, 5.4rem);
+            line-height: 0.95;
+            max-width: 10ch;
+            color: oklch(23% 0.06 20);
+            text-wrap: balance;
+        }
+
+        .hero h1 .accent-slice {
+            display: inline-block;
+            color: oklch(20% 0.07 185);
+            transform: rotate(-2deg);
+        }
+
+        .hero p {
+            max-width: 52ch;
+            font-size: 1.05rem;
+            color: color-mix(in oklab, var(--ink) 86%, var(--surface));
+        }
+
+        .hero-tags .pill,
+        .category-links .pill {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            min-height: 3.25rem;
+            padding: 0.95rem 1.3rem;
+            border-radius: 1rem;
+            text-decoration: none;
+            font-weight: 800;
+            transition: transform 180ms var(--ease-out-quart), box-shadow 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart);
+        }
+
+        .button--primary {
+            background: oklch(24% 0.07 18);
+            color: oklch(98% 0.02 75);
+            box-shadow: 0 16px 28px color-mix(in oklab, var(--ink) 18%, transparent);
+        }
+
+        .button--secondary {
+            background: color-mix(in oklab, var(--surface) 80%, transparent);
+            color: var(--ink);
+            border: 1px solid color-mix(in oklab, var(--ink) 12%, transparent);
+        }
+
+        .quick-launch {
+            margin-top: 0.5rem;
+        }
+
+        .quick-link {
+            font-weight: 700;
+        }
+
+        .search-panel {
+            align-self: end;
+            display: grid;
+            gap: 1rem;
+            padding: 1.4rem;
+            background: color-mix(in oklab, var(--surface) 96%, var(--hero-soft));
+            border-radius: 1.6rem;
+            border: 1px solid color-mix(in oklab, var(--hero-deep) 10%, transparent);
+        }
+
+        .search-panel p {
+            color: var(--ink-soft);
+            font-size: 0.96rem;
+        }
+
+        .search-control {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 0.75rem;
+        }
+
+        .search-input {
+            min-height: 3.3rem;
+            padding: 0 1rem;
+            border-radius: 1rem;
+            border: 1px solid color-mix(in oklab, var(--hero-deep) 12%, transparent);
+            background: var(--surface);
+            color: var(--ink);
+        }
+
+        .search-input::placeholder {
+            color: color-mix(in oklab, var(--ink-soft) 78%, var(--surface));
+        }
+
+        .search-clear {
+            min-width: 3.3rem;
+            min-height: 3.3rem;
+            border: 0;
+            border-radius: 1rem;
+            background: color-mix(in oklab, var(--accent-soft) 70%, var(--surface));
+            color: var(--ink);
+            cursor: pointer;
+            font-weight: 800;
+            transition: transform 180ms var(--ease-out-quart), background-color 180ms var(--ease-out-quart);
+        }
+
+        .results-summary {
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+        }
+
+        .catalog {
+            display: grid;
+            gap: clamp(1.5rem, 3vw, 2rem);
         }
 
         .category {
-            margin-bottom: 50px;
+            position: relative;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            background: color-mix(in oklab, var(--section-soft) 82%, var(--surface));
+            border: 1px solid color-mix(in oklab, var(--section-accent) 20%, var(--surface));
+            border-radius: 1.9rem;
+            box-shadow: 0 20px 34px color-mix(in oklab, var(--section-accent) 10%, transparent);
+            transform-origin: center;
+        }
+
+        .category:nth-of-type(even) {
+            transform: rotate(-0.35deg);
+        }
+
+        .category:nth-of-type(odd) {
+            transform: rotate(0.35deg);
+        }
+
+        .category::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background:
+                radial-gradient(circle at top right, color-mix(in oklab, var(--section-accent) 18%, transparent) 0, transparent 28%),
+                linear-gradient(180deg, transparent 0%, color-mix(in oklab, var(--section-accent) 7%, transparent) 100%);
+            pointer-events: none;
+        }
+
+        .category-heading {
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 1rem;
+            align-items: start;
+            margin-bottom: 1.4rem;
+        }
+
+        .category-heading-copy {
+            display: grid;
+            gap: 0.5rem;
+        }
+
+        .category-kicker {
+            color: var(--section-ink);
         }
 
         .category-title {
-            color: #fff;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-left: 10px;
-            border-left: 4px solid;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.75rem;
+            font-family: "Fredoka", sans-serif;
+            font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+            line-height: 1;
+            color: var(--section-ink);
         }
 
-        .category-title .icon {
-            font-size: 1.5rem;
+        .category-icon-badge {
+            display: inline-grid;
+            place-items: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 1rem;
+            background: color-mix(in oklab, var(--section-accent) 22%, var(--surface));
+            box-shadow: inset 0 -6px 12px color-mix(in oklab, var(--section-accent) 16%, transparent);
         }
 
-        .category:nth-child(2) .category-title { border-color: #e94560; }
-        .category:nth-child(3) .category-title { border-color: #f9a826; }
-        .category:nth-child(4) .category-title { border-color: #00d9ff; }
-        .category:nth-child(5) .category-title { border-color: #7bed9f; }
-        .category:nth-child(6) .category-title { border-color: #a55eea; }
-        .category:nth-child(7) .category-title { border-color: #fd79a8; }
-        .category:nth-child(8) .category-title { border-color: #fdcb6e; }
-        .category:nth-child(9) .category-title { border-color: #74b9ff; }
+        .category-summary {
+            max-width: 46ch;
+            color: color-mix(in oklab, var(--section-ink) 82%, var(--surface));
+        }
+
+        .section-badge {
+            font-size: 0.9rem;
+            font-weight: 800;
+            background: var(--surface);
+            color: var(--section-ink);
+            border-color: color-mix(in oklab, var(--section-accent) 30%, var(--surface));
+        }
 
         .cards-grid {
+            position: relative;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
         }
 
         .card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 25px;
-            text-decoration: none;
-            color: #fff;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            overflow: hidden;
+            display: grid;
+            gap: 1rem;
+            min-height: 100%;
+            padding: 1.15rem;
+            border-radius: 1.3rem;
+            background: color-mix(in oklab, var(--surface) 92%, var(--section-accent));
+            border: 1px solid color-mix(in oklab, var(--section-accent) 26%, var(--surface));
+            text-decoration: none;
+            color: var(--ink);
+            transition: transform 220ms var(--ease-out-quart), box-shadow 220ms var(--ease-out-quart), border-color 220ms var(--ease-out-quart), background-color 220ms var(--ease-out-quart);
+            animation: rise-in 650ms var(--ease-out-expo) both;
+            animation-delay: calc(var(--delay, 0) * 45ms);
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--card-color), transparent);
+        .card--featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, color-mix(in oklab, var(--section-accent) 34%, var(--surface)) 0%, color-mix(in oklab, var(--surface) 90%, var(--highlight)) 100%);
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            width: fit-content;
+            min-height: 2rem;
+            padding: 0.3rem 0.75rem;
+            border-radius: 999px;
+            background: color-mix(in oklab, var(--surface) 60%, var(--section-accent));
+            color: var(--section-ink);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
         }
 
         .card-icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 2rem;
+            line-height: 1;
+            margin-top: 0.75rem;
+        }
+
+        .card-arrow {
+            display: inline-grid;
+            place-items: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.9rem;
+            background: color-mix(in oklab, var(--surface) 72%, var(--section-accent));
+            color: var(--section-ink);
+            font-size: 1.15rem;
+            flex-shrink: 0;
+        }
+
+        .card-copy {
+            display: grid;
+            gap: 0.35rem;
         }
 
         .card-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 8px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: color-mix(in oklab, var(--ink) 90%, var(--section-ink));
         }
 
         .card-desc {
-            font-size: 0.85rem;
-            color: #a0a0a0;
+            color: color-mix(in oklab, var(--ink-soft) 88%, var(--section-ink));
+            font-size: 0.94rem;
         }
 
-        .category:nth-child(2) .card { --card-color: #e94560; }
-        .category:nth-child(3) .card { --card-color: #f9a826; }
-        .category:nth-child(4) .card { --card-color: #00d9ff; }
-        .category:nth-child(5) .card { --card-color: #7bed9f; }
-        .category:nth-child(6) .card { --card-color: #a55eea; }
-        .category:nth-child(7) .card { --card-color: #fd79a8; }
-        .category:nth-child(8) .card { --card-color: #fdcb6e; }
-        .category:nth-child(9) .card { --card-color: #74b9ff; }
+        .empty-state {
+            display: none;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            background: color-mix(in oklab, var(--surface) 92%, var(--hero-soft));
+            border: 1px dashed color-mix(in oklab, var(--hero-deep) 18%, var(--surface));
+            color: var(--ink-soft);
+        }
 
-        @media (max-width: 768px) {
-            .header h1 { font-size: 2rem; }
-            .cards-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        .footer {
+            display: grid;
+            gap: 0.85rem;
+            margin-top: 2.2rem;
+            padding: 1.4rem 1.5rem 2.5rem;
+            color: var(--ink-soft);
+            text-align: center;
+        }
+
+        .footer-links {
+            justify-content: center;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .pill:hover,
+        .quick-link:hover,
+        .section-badge:hover,
+        .button:hover,
+        .card:hover,
+        .search-clear:hover {
+            transform: translateY(-2px);
+        }
+
+        .button--primary:hover,
+        .card:hover {
+            box-shadow: 0 18px 30px color-mix(in oklab, var(--section-accent, var(--hero-deep)) 14%, transparent);
+        }
+
+        .card:hover {
+            border-color: color-mix(in oklab, var(--section-accent) 42%, var(--surface));
+        }
+
+        .pill:focus-visible,
+        .mini-link:focus-visible,
+        .button:focus-visible,
+        .search-input:focus-visible,
+        .search-clear:focus-visible,
+        .card:focus-visible {
+            outline: 3px solid color-mix(in oklab, var(--accent) 55%, var(--surface));
+            outline-offset: 3px;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
+        @keyframes rise-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 860px) {
+            body {
+                padding: 1rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .category-heading {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .hero h1 {
+                font-size: clamp(2.6rem, 13vw, 4rem);
+            }
+
+            .search-control {
+                grid-template-columns: 1fr;
+            }
+
+            .search-clear {
+                width: 100%;
+            }
+
+            .card--featured {
+                grid-column: span 1;
+            }
+
+            .category {
+                transform: none !important;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🧮 Calculator Hub</h1>
-        <p>60+ Calculators for Every Need</p>
-        <p style="margin-top:10px;"><a href="about.html" style="color:#e94560;text-decoration:none;font-size:0.9rem;">About &bull; AI Attribution</a></p>
-    </div>
-
-    <!-- AI Attribution -->
-    <div style="text-align:center;padding:15px;margin-bottom:30px;background:rgba(255,255,255,0.05);border-radius:10px;">
-        <p style="color:#aaa;font-size:14px;">
-            🤖 AI-assisted project • Built with <a href="https://opencode.ai" target="_blank" style="color:#e94560;text-decoration:none;">opencode</a>
-        </p>
-        <p style="color:#666;font-size:12px;margin-top:5px;">60+ calculators to simplify your daily calculations</p>
-    </div>
-
-    <!-- Health -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">💊</span> Health</h2>
-        <div class="cards-grid">
-            <a href="health/bmi.html" class="card">
-                <div class="card-icon">⚖️</div>
-                <div class="card-title">BMI Calculator</div>
-                <div class="card-desc">Body Mass Index</div>
-            </a>
-            <a href="health/bmr.html" class="card">
-                <div class="card-icon">🔥</div>
-                <div class="card-title">BMR Calculator</div>
-                <div class="card-desc">Basal Metabolic Rate</div>
-            </a>
-            <a href="health/calorie.html" class="card">
-                <div class="card-icon">🍎</div>
-                <div class="card-title">Calorie Calculator</div>
-                <div class="card-desc">Daily Calories Needed</div>
-            </a>
-            <a href="health/body-fat.html" class="card">
-                <div class="card-icon">💪</div>
-                <div class="card-title">Body Fat Calculator</div>
-                <div class="card-desc">Body Fat Percentage</div>
-            </a>
-            <a href="health/water-intake.html" class="card">
-                <div class="card-icon">💧</div>
-                <div class="card-title">Water Intake</div>
-                <div class="card-desc">Daily Water Needed</div>
-            </a>
-            <a href="health/pregnancy-due.html" class="card">
-                <div class="card-icon">👶</div>
-                <div class="card-title">Due Date Calculator</div>
-                <div class="card-desc">Pregnancy Due Date</div>
-            </a>
-            <a href="health/ovulation.html" class="card">
-                <div class="card-icon">🩺</div>
-                <div class="card-title">Ovulation Calculator</div>
-                <div class="card-desc">Fertility Window</div>
-            </a>
-            <a href="health/baby-age.html" class="card">
-                <div class="card-icon">🧒</div>
-                <div class="card-title">Baby Age Calculator</div>
-                <div class="card-desc">Baby Age in Years</div>
-            </a>
-            <a href="health/pet-age.html" class="card">
-                <div class="card-icon">🐕</div>
-                <div class="card-title">Pet Age Calculator</div>
-                <div class="card-desc">Dog/Cat to Human Age</div>
-            </a>
-            <a href="health/blood-alcohol.html" class="card">
-                <div class="card-icon">🍺</div>
-                <div class="card-title">Blood Alcohol</div>
-                <div class="card-desc">Alcohol Metabolism</div>
-            </a>
+    <div class="page-shell">
+        <div class="utility-bar">
+            <div class="utility-badges">
+                <span class="pill pill--warm">🧮 60+ calculators</span>
+                <span class="pill pill--accent">Instant answers, no sign-up</span>
+            </div>
+            <div class="utility-links">
+                <a class="mini-link" href="about.html">About</a>
+                <a class="mini-link" href="https://opencode.ai" target="_blank" rel="noopener noreferrer">AI-assisted build</a>
+            </div>
         </div>
+
+        <header class="hero">
+            <div class="hero-copy">
+                <p class="hero-label">Playful everyday math for real life</p>
+                <h1>Pick a calculator and <span class="accent-slice">keep your day moving.</span></h1>
+                <p>CalcMate turns all those tiny "wait, how do I figure that out?" moments into a quick answer. Browse by category, jump into a favorite, or search for the exact tool you need.</p>
+                <div class="hero-tags">
+                    <span class="pill">💸 Money</span>
+                    <span class="pill">💪 Wellness</span>
+                    <span class="pill">🎓 School</span>
+                    <span class="pill">🌍 Everyday life</span>
+                </div>
+                <div class="hero-actions">
+                    <a class="button button--primary" href="#catalog">Explore all calculators <span aria-hidden="true">↓</span></a>
+                    <a class="button button--secondary" href="finance/loan.html">Try a popular pick</a>
+                </div>
+                <div class="quick-launch" aria-label="Popular calculators">
+                    <a class="quick-link" href="health/bmi.html">BMI Check</a>
+                    <a class="quick-link" href="finance/loan.html">Loan Plan</a>
+                    <a class="quick-link" href="lifestyle/unit-converter.html">Unit Convert</a>
+                    <a class="quick-link" href="education/gpa.html">GPA Boost</a>
+                    <a class="quick-link" href="utility/discount.html">Sale Math</a>
+                </div>
+            </div>
+
+            <aside class="search-panel" aria-label="Calculator finder">
+                <div>
+                    <p class="search-label">Find your shortcut</p>
+                    <p>Type a topic, a calculator name, or a use case like loan, calorie, travel, or grade.</p>
+                </div>
+                <div class="search-control">
+                    <label class="visually-hidden" for="calculator-search">Search calculators</label>
+                    <input id="calculator-search" class="search-input" type="search" name="q" placeholder="Search 60+ calculators">
+                    <button class="search-clear" type="button" id="clear-search" aria-label="Clear search">×</button>
+                </div>
+                <p class="results-summary" id="results-summary">Showing all calculators.</p>
+                <nav class="category-links" aria-label="Jump to a category">
+                    <a class="pill" href="#health">💊 Health</a>
+                    <a class="pill" href="#finance">💰 Finance</a>
+                    <a class="pill" href="#lifestyle">🌍 Lifestyle</a>
+                    <a class="pill" href="#fitness">🏋️ Fitness</a>
+                    <a class="pill" href="#education">🎓 Education</a>
+                    <a class="pill" href="#utility">🔧 Utility</a>
+                    <a class="pill" href="#transportation">🚗 Transportation</a>
+                    <a class="pill" href="#entertainment">🎮 Entertainment</a>
+                </nav>
+            </aside>
+        </header>
+
+        <main class="catalog" id="catalog">
+            <section class="category" id="health" style="--section-accent: oklch(74% 0.18 28); --section-soft: oklch(95% 0.04 30); --section-ink: oklch(28% 0.07 20);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Feel-better math</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">💊</span> Health</h2>
+                        <p class="category-summary">Daily wellness, nutrition, and body-check essentials that help you make quick choices with confidence.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">10 tools</span>
+                        <a class="section-badge" href="health/bmi.html">Start with BMI Calculator</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="health/bmi.html" class="card card--featured" data-search="bmi calculator body mass index health feel-better math" data-category="health" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">⚖️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">BMI Calculator</div>
+                            <div class="card-desc">Body Mass Index</div>
+                        </div>
+                    </a>
+                    <a href="health/bmr.html" class="card" data-search="bmr calculator basal metabolic rate health feel-better math" data-category="health" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🔥</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">BMR Calculator</div>
+                            <div class="card-desc">Basal Metabolic Rate</div>
+                        </div>
+                    </a>
+                    <a href="health/calorie.html" class="card" data-search="calorie calculator daily calories needed health feel-better math" data-category="health" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🍎</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Calorie Calculator</div>
+                            <div class="card-desc">Daily Calories Needed</div>
+                        </div>
+                    </a>
+                    <a href="health/body-fat.html" class="card" data-search="body fat calculator body fat percentage health feel-better math" data-category="health" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">💪</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Body Fat Calculator</div>
+                            <div class="card-desc">Body Fat Percentage</div>
+                        </div>
+                    </a>
+                    <a href="health/water-intake.html" class="card" data-search="water intake daily water needed health feel-better math" data-category="health" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">💧</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Water Intake</div>
+                            <div class="card-desc">Daily Water Needed</div>
+                        </div>
+                    </a>
+                    <a href="health/pregnancy-due.html" class="card" data-search="due date calculator pregnancy due date health feel-better math" data-category="health" style="--delay: 5;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">👶</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Due Date Calculator</div>
+                            <div class="card-desc">Pregnancy Due Date</div>
+                        </div>
+                    </a>
+                    <a href="health/ovulation.html" class="card" data-search="ovulation calculator fertility window health feel-better math" data-category="health" style="--delay: 6;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🩺</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Ovulation Calculator</div>
+                            <div class="card-desc">Fertility Window</div>
+                        </div>
+                    </a>
+                    <a href="health/baby-age.html" class="card" data-search="baby age calculator baby age in years health feel-better math" data-category="health" style="--delay: 7;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🧒</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Baby Age Calculator</div>
+                            <div class="card-desc">Baby Age in Years</div>
+                        </div>
+                    </a>
+                    <a href="health/pet-age.html" class="card" data-search="pet age calculator dog/cat to human age health feel-better math" data-category="health" style="--delay: 8;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🐕</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Pet Age Calculator</div>
+                            <div class="card-desc">Dog/Cat to Human Age</div>
+                        </div>
+                    </a>
+                    <a href="health/blood-alcohol.html" class="card" data-search="blood alcohol alcohol metabolism health feel-better math" data-category="health" style="--delay: 9;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Health</span>
+                                <div class="card-icon">🍺</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Blood Alcohol</div>
+                            <div class="card-desc">Alcohol Metabolism</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="finance" style="--section-accent: oklch(70% 0.17 85); --section-soft: oklch(96% 0.04 92); --section-ink: oklch(26% 0.06 78);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Money moves</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">💰</span> Finance</h2>
+                        <p class="category-summary">Loan math, salary checks, investing, and bill-splitting tools for the money questions that show up all week.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">10 tools</span>
+                        <a class="section-badge" href="finance/mortgage.html">Start with Mortgage Calculator</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="finance/mortgage.html" class="card card--featured" data-search="mortgage calculator home loan payments finance money moves" data-category="finance" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">🏠</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Mortgage Calculator</div>
+                            <div class="card-desc">Home Loan Payments</div>
+                        </div>
+                    </a>
+                    <a href="finance/loan.html" class="card" data-search="loan calculator loan payment plan finance money moves" data-category="finance" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">📋</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Loan Calculator</div>
+                            <div class="card-desc">Loan Payment Plan</div>
+                        </div>
+                    </a>
+                    <a href="finance/compound-interest.html" class="card" data-search="compound interest investment growth finance money moves" data-category="finance" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">📈</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Compound Interest</div>
+                            <div class="card-desc">Investment Growth</div>
+                        </div>
+                    </a>
+                    <a href="finance/stock-average.html" class="card" data-search="stock average average cost basis finance money moves" data-category="finance" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">📊</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Stock Average</div>
+                            <div class="card-desc">Average Cost Basis</div>
+                        </div>
+                    </a>
+                    <a href="finance/rental-yield.html" class="card" data-search="rental yield property roi finance money moves" data-category="finance" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">🏢</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Rental Yield</div>
+                            <div class="card-desc">Property ROI</div>
+                        </div>
+                    </a>
+                    <a href="finance/salary-tax.html" class="card" data-search="salary tax gross to net salary finance money moves" data-category="finance" style="--delay: 5;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">💵</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Salary Tax</div>
+                            <div class="card-desc">Gross to Net Salary</div>
+                        </div>
+                    </a>
+                    <a href="finance/tip.html" class="card" data-search="tip calculator tip &amp; split bill finance money moves" data-category="finance" style="--delay: 6;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">🍽️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Tip Calculator</div>
+                            <div class="card-desc">Tip &amp; Split Bill</div>
+                        </div>
+                    </a>
+                    <a href="finance/credit-card-interest.html" class="card" data-search="credit card interest interest calculator finance money moves" data-category="finance" style="--delay: 7;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">💳</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Credit Card Interest</div>
+                            <div class="card-desc">Interest Calculator</div>
+                        </div>
+                    </a>
+                    <a href="finance/retirement.html" class="card" data-search="retirement planner savings goal finance money moves" data-category="finance" style="--delay: 8;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">🏖️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Retirement Planner</div>
+                            <div class="card-desc">Savings Goal</div>
+                        </div>
+                    </a>
+                    <a href="finance/crypto.html" class="card" data-search="crypto calculator bitcoin/altcoin finance money moves" data-category="finance" style="--delay: 9;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Finance</span>
+                                <div class="card-icon">₿</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Crypto Calculator</div>
+                            <div class="card-desc">Bitcoin/Altcoin</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="lifestyle" style="--section-accent: oklch(70% 0.16 210); --section-soft: oklch(95% 0.03 210); --section-ink: oklch(27% 0.05 220);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Daily life, sorted</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🌍</span> Lifestyle</h2>
+                        <p class="category-summary">Time, travel, dates, and everyday planning helpers for all the life-admin math nobody wants to do by hand.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">10 tools</span>
+                        <a class="section-badge" href="lifestyle/date-difference.html">Start with Date Difference</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="lifestyle/date-difference.html" class="card card--featured" data-search="date difference days between dates lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">📅</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Date Difference</div>
+                            <div class="card-desc">Days Between Dates</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/age.html" class="card" data-search="age calculator exact age lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">🎂</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Age Calculator</div>
+                            <div class="card-desc">Exact Age</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/time-zone.html" class="card" data-search="time zone world clock lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">⏰</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Time Zone</div>
+                            <div class="card-desc">World Clock</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/unit-converter.html" class="card" data-search="unit converter length, weight, temp lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">🔄</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Unit Converter</div>
+                            <div class="card-desc">Length, Weight, Temp</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/currency-exchange.html" class="card" data-search="currency exchange money conversion lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">💱</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Currency Exchange</div>
+                            <div class="card-desc">Money Conversion</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/work-hours.html" class="card" data-search="work hours overtime calculator lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 5;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">⏱️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Work Hours</div>
+                            <div class="card-desc">Overtime Calculator</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/leave.html" class="card" data-search="leave calculator vacation days lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 6;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">🏖️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Leave Calculator</div>
+                            <div class="card-desc">Vacation Days</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/countdown.html" class="card" data-search="countdown event timer lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 7;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">⏳</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Countdown</div>
+                            <div class="card-desc">Event Timer</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/anniversary.html" class="card" data-search="anniversary days together lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 8;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">💑</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Anniversary</div>
+                            <div class="card-desc">Days Together</div>
+                        </div>
+                    </a>
+                    <a href="lifestyle/travel-time.html" class="card" data-search="travel time trip duration lifestyle daily life, sorted" data-category="lifestyle" style="--delay: 9;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Lifestyle</span>
+                                <div class="card-icon">✈️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Travel Time</div>
+                            <div class="card-desc">Trip Duration</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="fitness" style="--section-accent: oklch(72% 0.17 150); --section-soft: oklch(95% 0.04 152); --section-ink: oklch(25% 0.05 150);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Training snapshots</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🏋️</span> Fitness</h2>
+                        <p class="category-summary">Training, calories, pace, and body-composition tools built for quick pre-workout and post-run check-ins.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">5 tools</span>
+                        <a class="section-badge" href="fitness/one-rep-max.html">Start with One Rep Max</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="fitness/one-rep-max.html" class="card card--featured" data-search="one rep max 1rm estimator fitness training snapshots" data-category="fitness" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">🏆</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">One Rep Max</div>
+                            <div class="card-desc">1RM Estimator</div>
+                        </div>
+                    </a>
+                    <a href="fitness/calorie-burn.html" class="card" data-search="calorie burn exercise calories fitness training snapshots" data-category="fitness" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Fitness</span>
+                                <div class="card-icon">⚡</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Calorie Burn</div>
+                            <div class="card-desc">Exercise Calories</div>
+                        </div>
+                    </a>
+                    <a href="fitness/running-pace.html" class="card" data-search="running pace pace calculator fitness training snapshots" data-category="fitness" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Fitness</span>
+                                <div class="card-icon">🏃</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Running Pace</div>
+                            <div class="card-desc">Pace Calculator</div>
+                        </div>
+                    </a>
+                    <a href="fitness/body-fat-navy.html" class="card" data-search="navy body fat military method fitness training snapshots" data-category="fitness" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Fitness</span>
+                                <div class="card-icon">⚓</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Navy Body Fat</div>
+                            <div class="card-desc">Military Method</div>
+                        </div>
+                    </a>
+                    <a href="fitness/macro.html" class="card" data-search="macro calculator protein, carb, fat fitness training snapshots" data-category="fitness" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Fitness</span>
+                                <div class="card-icon">🥗</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Macro Calculator</div>
+                            <div class="card-desc">Protein, Carb, Fat</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="education" style="--section-accent: oklch(72% 0.16 285); --section-soft: oklch(95% 0.03 288); --section-ink: oklch(27% 0.06 285);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Study support</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🎓</span> Education</h2>
+                        <p class="category-summary">Study smarter with fast grade, score, and school finance calculators that keep deadlines feeling manageable.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">5 tools</span>
+                        <a class="section-badge" href="education/gpa.html">Start with GPA Calculator</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="education/gpa.html" class="card card--featured" data-search="gpa calculator grade point average education study support" data-category="education" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">📝</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">GPA Calculator</div>
+                            <div class="card-desc">Grade Point Average</div>
+                        </div>
+                    </a>
+                    <a href="education/grade-percentage.html" class="card" data-search="grade percentage score converter education study support" data-category="education" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Education</span>
+                                <div class="card-icon">📊</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Grade Percentage</div>
+                            <div class="card-desc">Score Converter</div>
+                        </div>
+                    </a>
+                    <a href="education/exam-score.html" class="card" data-search="exam score pass/fail calculator education study support" data-category="education" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Education</span>
+                                <div class="card-icon">✅</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Exam Score</div>
+                            <div class="card-desc">Pass/Fail Calculator</div>
+                        </div>
+                    </a>
+                    <a href="education/scholarship.html" class="card" data-search="scholarship aid calculator education study support" data-category="education" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Education</span>
+                                <div class="card-icon">🎁</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Scholarship</div>
+                            <div class="card-desc">Aid Calculator</div>
+                        </div>
+                    </a>
+                    <a href="education/student-loan.html" class="card" data-search="student loan loan repayment education study support" data-category="education" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Education</span>
+                                <div class="card-icon">🎒</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Student Loan</div>
+                            <div class="card-desc">Loan Repayment</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="utility" style="--section-accent: oklch(70% 0.16 55); --section-soft: oklch(96% 0.04 58); --section-ink: oklch(27% 0.06 52);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Useful little wins</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🔧</span> Utility</h2>
+                        <p class="category-summary">Practical tools for tech, household, and budgeting decisions that come up in the middle of real life.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">10 tools</span>
+                        <a class="section-badge" href="utility/energy-cost.html">Start with Energy Cost</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="utility/energy-cost.html" class="card card--featured" data-search="energy cost electricity bill utility useful little wins" data-category="utility" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">💡</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Energy Cost</div>
+                            <div class="card-desc">Electricity Bill</div>
+                        </div>
+                    </a>
+                    <a href="utility/phone-data.html" class="card" data-search="phone data data usage utility useful little wins" data-category="utility" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">📱</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Phone Data</div>
+                            <div class="card-desc">Data Usage</div>
+                        </div>
+                    </a>
+                    <a href="utility/gym-membership.html" class="card" data-search="gym membership cost comparison utility useful little wins" data-category="utility" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">💪</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Gym Membership</div>
+                            <div class="card-desc">Cost Comparison</div>
+                        </div>
+                    </a>
+                    <a href="utility/food-cost.html" class="card" data-search="food cost meal budget utility useful little wins" data-category="utility" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">🍔</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Food Cost</div>
+                            <div class="card-desc">Meal Budget</div>
+                        </div>
+                    </a>
+                    <a href="utility/netflix-cost.html" class="card" data-search="netflix cost subscription value utility useful little wins" data-category="utility" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">🎬</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Netflix Cost</div>
+                            <div class="card-desc">Subscription Value</div>
+                        </div>
+                    </a>
+                    <a href="utility/download-time.html" class="card" data-search="download time transfer time utility useful little wins" data-category="utility" style="--delay: 5;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">⬇️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Download Time</div>
+                            <div class="card-desc">Transfer Time</div>
+                        </div>
+                    </a>
+                    <a href="utility/screen-time.html" class="card" data-search="screen time daily usage utility useful little wins" data-category="utility" style="--delay: 6;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">📺</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Screen Time</div>
+                            <div class="card-desc">Daily Usage</div>
+                        </div>
+                    </a>
+                    <a href="utility/discount.html" class="card" data-search="discount sale calculator utility useful little wins" data-category="utility" style="--delay: 7;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">🏷️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Discount</div>
+                            <div class="card-desc">Sale Calculator</div>
+                        </div>
+                    </a>
+                    <a href="utility/ppi-screen.html" class="card" data-search="screen ppi pixel density utility useful little wins" data-category="utility" style="--delay: 8;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">🖥️</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Screen PPI</div>
+                            <div class="card-desc">Pixel Density</div>
+                        </div>
+                    </a>
+                    <a href="utility/chinese-zodiac.html" class="card" data-search="chinese zodiac zodiac animal utility useful little wins" data-category="utility" style="--delay: 9;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Utility</span>
+                                <div class="card-icon">🐉</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Chinese Zodiac</div>
+                            <div class="card-desc">Zodiac Animal</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="transportation" style="--section-accent: oklch(72% 0.15 240); --section-soft: oklch(95% 0.03 240); --section-ink: oklch(28% 0.05 240);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Trip prep</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🚗</span> Transportation</h2>
+                        <p class="category-summary">Figure out fuel, flights, mileage, and commute costs before your next trip or daily ride.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">5 tools</span>
+                        <a class="section-badge" href="transportation/gas-fuel.html">Start with Gas &amp; Fuel</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="transportation/gas-fuel.html" class="card card--featured" data-search="gas &amp; fuel fuel economy transportation trip prep" data-category="transportation" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">⛽</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Gas &amp; Fuel</div>
+                            <div class="card-desc">Fuel Economy</div>
+                        </div>
+                    </a>
+                    <a href="transportation/car-maintenance.html" class="card" data-search="car maintenance service cost transportation trip prep" data-category="transportation" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Transportation</span>
+                                <div class="card-icon">🔧</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Car Maintenance</div>
+                            <div class="card-desc">Service Cost</div>
+                        </div>
+                    </a>
+                    <a href="transportation/flight-mileage.html" class="card" data-search="flight mileage miles calculator transportation trip prep" data-category="transportation" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Transportation</span>
+                                <div class="card-icon">🛫</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Flight Mileage</div>
+                            <div class="card-desc">Miles Calculator</div>
+                        </div>
+                    </a>
+                    <a href="transportation/flight-ticket.html" class="card" data-search="flight ticket airline fees transportation trip prep" data-category="transportation" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Transportation</span>
+                                <div class="card-icon">🎫</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Flight Ticket</div>
+                            <div class="card-desc">Airline Fees</div>
+                        </div>
+                    </a>
+                    <a href="transportation/commute-cost.html" class="card" data-search="commute cost daily transport transportation trip prep" data-category="transportation" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Transportation</span>
+                                <div class="card-icon">🚇</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Commute Cost</div>
+                            <div class="card-desc">Daily Transport</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <section class="category" id="entertainment" style="--section-accent: oklch(74% 0.19 340); --section-soft: oklch(95% 0.04 340); --section-ink: oklch(28% 0.08 336);">
+                <div class="category-heading">
+                    <div class="category-heading-copy">
+                        <p class="category-kicker">Fun detours</p>
+                        <h2 class="category-title"><span class="category-icon-badge" aria-hidden="true">🎮</span> Entertainment</h2>
+                        <p class="category-summary">A lighter corner of CalcMate for lucky numbers, playful experiments, and just-for-fun calculations.</p>
+                    </div>
+                    <div class="section-badges">
+                        <span class="section-badge section-count">5 tools</span>
+                        <a class="section-badge" href="entertainment/lucky-number.html">Start with Lucky Number</a>
+                    </div>
+                </div>
+                <div class="cards-grid">
+                    <a href="entertainment/lucky-number.html" class="card card--featured" data-search="lucky number random fortune entertainment fun detours" data-category="entertainment" style="--delay: 0;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Popular start</span>
+                                <div class="card-icon">🍀</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Lucky Number</div>
+                            <div class="card-desc">Random Fortune</div>
+                        </div>
+                    </a>
+                    <a href="entertainment/love-compatibility.html" class="card" data-search="love compatibility name match entertainment fun detours" data-category="entertainment" style="--delay: 1;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Entertainment</span>
+                                <div class="card-icon">💕</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Love Compatibility</div>
+                            <div class="card-desc">Name Match</div>
+                        </div>
+                    </a>
+                    <a href="entertainment/lottery-prob.html" class="card" data-search="lottery probability win chance entertainment fun detours" data-category="entertainment" style="--delay: 2;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Entertainment</span>
+                                <div class="card-icon">🎰</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Lottery Probability</div>
+                            <div class="card-desc">Win Chance</div>
+                        </div>
+                    </a>
+                    <a href="entertainment/lucky-color.html" class="card" data-search="lucky color daily fortune entertainment fun detours" data-category="entertainment" style="--delay: 3;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Entertainment</span>
+                                <div class="card-icon">🌈</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Lucky Color</div>
+                            <div class="card-desc">Daily Fortune</div>
+                        </div>
+                    </a>
+                    <a href="entertainment/red-packet.html" class="card" data-search="red packet chinese new year entertainment fun detours" data-category="entertainment" style="--delay: 4;">
+                        <div class="card-top">
+                            <div>
+                                <span class="card-tag">Entertainment</span>
+                                <div class="card-icon">🧧</div>
+                            </div>
+                            <span class="card-arrow" aria-hidden="true">↗</span>
+                        </div>
+                        <div class="card-copy">
+                            <div class="card-title">Red Packet</div>
+                            <div class="card-desc">Chinese New Year</div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <div class="empty-state" id="empty-state">
+                <p><strong>No exact match yet.</strong> Try a broader keyword like <em>loan</em>, <em>bmi</em>, <em>discount</em>, or <em>travel</em>.</p>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p class="footer-note">Made to turn everyday calculations into quick little wins.</p>
+            <div class="footer-links">
+                <a class="mini-link" href="about.html">About &amp; AI attribution</a>
+                <a class="mini-link" href="https://opencode.ai" target="_blank" rel="noopener noreferrer">Built with opencode</a>
+            </div>
+        </footer>
     </div>
 
-    <!-- Finance -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">💰</span> Finance</h2>
-        <div class="cards-grid">
-            <a href="finance/mortgage.html" class="card">
-                <div class="card-icon">🏠</div>
-                <div class="card-title">Mortgage Calculator</div>
-                <div class="card-desc">Home Loan Payments</div>
-            </a>
-            <a href="finance/loan.html" class="card">
-                <div class="card-icon">📋</div>
-                <div class="card-title">Loan Calculator</div>
-                <div class="card-desc">Loan Payment Plan</div>
-            </a>
-            <a href="finance/compound-interest.html" class="card">
-                <div class="card-icon">📈</div>
-                <div class="card-title">Compound Interest</div>
-                <div class="card-desc">Investment Growth</div>
-            </a>
-            <a href="finance/stock-average.html" class="card">
-                <div class="card-icon">📊</div>
-                <div class="card-title">Stock Average</div>
-                <div class="card-desc">Average Cost Basis</div>
-            </a>
-            <a href="finance/rental-yield.html" class="card">
-                <div class="card-icon">🏢</div>
-                <div class="card-title">Rental Yield</div>
-                <div class="card-desc">Property ROI</div>
-            </a>
-            <a href="finance/salary-tax.html" class="card">
-                <div class="card-icon">💵</div>
-                <div class="card-title">Salary Tax</div>
-                <div class="card-desc">Gross to Net Salary</div>
-            </a>
-            <a href="finance/tip.html" class="card">
-                <div class="card-icon">🍽️</div>
-                <div class="card-title">Tip Calculator</div>
-                <div class="card-desc">Tip & Split Bill</div>
-            </a>
-            <a href="finance/credit-card-interest.html" class="card">
-                <div class="card-icon">💳</div>
-                <div class="card-title">Credit Card Interest</div>
-                <div class="card-desc">Interest Calculator</div>
-            </a>
-            <a href="finance/retirement.html" class="card">
-                <div class="card-icon">🏖️</div>
-                <div class="card-title">Retirement Planner</div>
-                <div class="card-desc">Savings Goal</div>
-            </a>
-            <a href="finance/crypto.html" class="card">
-                <div class="card-icon">₿</div>
-                <div class="card-title">Crypto Calculator</div>
-                <div class="card-desc">Bitcoin/Altcoin</div>
-            </a>
-        </div>
-    </div>
+    <script>
+        const searchInput = document.getElementById("calculator-search");
+        const clearButton = document.getElementById("clear-search");
+        const resultSummary = document.getElementById("results-summary");
+        const emptyState = document.getElementById("empty-state");
+        const cards = Array.from(document.querySelectorAll(".card"));
+        const sections = Array.from(document.querySelectorAll(".category"));
 
-    <!-- Lifestyle -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🌍</span> Lifestyle</h2>
-        <div class="cards-grid">
-            <a href="lifestyle/date-difference.html" class="card">
-                <div class="card-icon">📅</div>
-                <div class="card-title">Date Difference</div>
-                <div class="card-desc">Days Between Dates</div>
-            </a>
-            <a href="lifestyle/age.html" class="card">
-                <div class="card-icon">🎂</div>
-                <div class="card-title">Age Calculator</div>
-                <div class="card-desc">Exact Age</div>
-            </a>
-            <a href="lifestyle/time-zone.html" class="card">
-                <div class="card-icon">⏰</div>
-                <div class="card-title">Time Zone</div>
-                <div class="card-desc">World Clock</div>
-            </a>
-            <a href="lifestyle/unit-converter.html" class="card">
-                <div class="card-icon">🔄</div>
-                <div class="card-title">Unit Converter</div>
-                <div class="card-desc">Length, Weight, Temp</div>
-            </a>
-            <a href="lifestyle/currency-exchange.html" class="card">
-                <div class="card-icon">💱</div>
-                <div class="card-title">Currency Exchange</div>
-                <div class="card-desc">Money Conversion</div>
-            </a>
-            <a href="lifestyle/work-hours.html" class="card">
-                <div class="card-icon">⏱️</div>
-                <div class="card-title">Work Hours</div>
-                <div class="card-desc">Overtime Calculator</div>
-            </a>
-            <a href="lifestyle/leave.html" class="card">
-                <div class="card-icon">🏖️</div>
-                <div class="card-title">Leave Calculator</div>
-                <div class="card-desc">Vacation Days</div>
-            </a>
-            <a href="lifestyle/countdown.html" class="card">
-                <div class="card-icon">⏳</div>
-                <div class="card-title">Countdown</div>
-                <div class="card-desc">Event Timer</div>
-            </a>
-            <a href="lifestyle/anniversary.html" class="card">
-                <div class="card-icon">💑</div>
-                <div class="card-title">Anniversary</div>
-                <div class="card-desc">Days Together</div>
-            </a>
-            <a href="lifestyle/travel-time.html" class="card">
-                <div class="card-icon">✈️</div>
-                <div class="card-title">Travel Time</div>
-                <div class="card-desc">Trip Duration</div>
-            </a>
-        </div>
-    </div>
+        const updateResults = () => {
+            const term = searchInput.value.trim().toLowerCase();
+            let matchCount = 0;
 
-    <!-- Fitness -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🏋️</span> Fitness</h2>
-        <div class="cards-grid">
-            <a href="fitness/one-rep-max.html" class="card">
-                <div class="card-icon">🏆</div>
-                <div class="card-title">One Rep Max</div>
-                <div class="card-desc">1RM Estimator</div>
-            </a>
-            <a href="fitness/calorie-burn.html" class="card">
-                <div class="card-icon">⚡</div>
-                <div class="card-title">Calorie Burn</div>
-                <div class="card-desc">Exercise Calories</div>
-            </a>
-            <a href="fitness/running-pace.html" class="card">
-                <div class="card-icon">🏃</div>
-                <div class="card-title">Running Pace</div>
-                <div class="card-desc">Pace Calculator</div>
-            </a>
-            <a href="fitness/body-fat-navy.html" class="card">
-                <div class="card-icon">⚓</div>
-                <div class="card-title">Navy Body Fat</div>
-                <div class="card-desc">Military Method</div>
-            </a>
-            <a href="fitness/macro.html" class="card">
-                <div class="card-icon">🥗</div>
-                <div class="card-title">Macro Calculator</div>
-                <div class="card-desc">Protein, Carb, Fat</div>
-            </a>
-        </div>
-    </div>
+            cards.forEach((card) => {
+                const haystack = card.dataset.search || "";
+                const isMatch = !term || haystack.includes(term);
+                card.hidden = !isMatch;
+                if (isMatch) {
+                    matchCount += 1;
+                }
+            });
 
-    <!-- Education -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🎓</span> Education</h2>
-        <div class="cards-grid">
-            <a href="education/gpa.html" class="card">
-                <div class="card-icon">📝</div>
-                <div class="card-title">GPA Calculator</div>
-                <div class="card-desc">Grade Point Average</div>
-            </a>
-            <a href="education/grade-percentage.html" class="card">
-                <div class="card-icon">📊</div>
-                <div class="card-title">Grade Percentage</div>
-                <div class="card-desc">Score Converter</div>
-            </a>
-            <a href="education/exam-score.html" class="card">
-                <div class="card-icon">✅</div>
-                <div class="card-title">Exam Score</div>
-                <div class="card-desc">Pass/Fail Calculator</div>
-            </a>
-            <a href="education/scholarship.html" class="card">
-                <div class="card-icon">🎁</div>
-                <div class="card-title">Scholarship</div>
-                <div class="card-desc">Aid Calculator</div>
-            </a>
-            <a href="education/student-loan.html" class="card">
-                <div class="card-icon">🎒</div>
-                <div class="card-title">Student Loan</div>
-                <div class="card-desc">Loan Repayment</div>
-            </a>
-        </div>
-    </div>
+            sections.forEach((section) => {
+                const hasVisibleCards = Array.from(section.querySelectorAll(".card")).some((card) => !card.hidden);
+                section.hidden = !hasVisibleCards;
+            });
 
-    <!-- Utility -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🔧</span> Utility</h2>
-        <div class="cards-grid">
-            <a href="utility/energy-cost.html" class="card">
-                <div class="card-icon">💡</div>
-                <div class="card-title">Energy Cost</div>
-                <div class="card-desc">Electricity Bill</div>
-            </a>
-            <a href="utility/phone-data.html" class="card">
-                <div class="card-icon">📱</div>
-                <div class="card-title">Phone Data</div>
-                <div class="card-desc">Data Usage</div>
-            </a>
-            <a href="utility/gym-membership.html" class="card">
-                <div class="card-icon">💪</div>
-                <div class="card-title">Gym Membership</div>
-                <div class="card-desc">Cost Comparison</div>
-            </a>
-            <a href="utility/food-cost.html" class="card">
-                <div class="card-icon">🍔</div>
-                <div class="card-title">Food Cost</div>
-                <div class="card-desc">Meal Budget</div>
-            </a>
-            <a href="utility/netflix-cost.html" class="card">
-                <div class="card-icon">🎬</div>
-                <div class="card-title">Netflix Cost</div>
-                <div class="card-desc">Subscription Value</div>
-            </a>
-            <a href="utility/download-time.html" class="card">
-                <div class="card-icon">⬇️</div>
-                <div class="card-title">Download Time</div>
-                <div class="card-desc">Transfer Time</div>
-            </a>
-            <a href="utility/screen-time.html" class="card">
-                <div class="card-icon">📺</div>
-                <div class="card-title">Screen Time</div>
-                <div class="card-desc">Daily Usage</div>
-            </a>
-            <a href="utility/discount.html" class="card">
-                <div class="card-icon">🏷️</div>
-                <div class="card-title">Discount</div>
-                <div class="card-desc">Sale Calculator</div>
-            </a>
-            <a href="utility/ppi-screen.html" class="card">
-                <div class="card-icon">🖥️</div>
-                <div class="card-title">Screen PPI</div>
-                <div class="card-desc">Pixel Density</div>
-            </a>
-            <a href="utility/chinese-zodiac.html" class="card">
-                <div class="card-icon">🐉</div>
-                <div class="card-title">Chinese Zodiac</div>
-                <div class="card-desc">Zodiac Animal</div>
-            </a>
-        </div>
-    </div>
+            if (!term) {
+                resultSummary.textContent = "Showing all calculators.";
+            } else if (matchCount === 1) {
+                resultSummary.textContent = 'Found 1 calculator for "' + term + '".';
+            } else {
+                resultSummary.textContent = 'Found ' + matchCount + ' calculators for "' + term + '".';
+            }
 
-    <!-- Transportation -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🚗</span> Transportation</h2>
-        <div class="cards-grid">
-            <a href="transportation/gas-fuel.html" class="card">
-                <div class="card-icon">⛽</div>
-                <div class="card-title">Gas & Fuel</div>
-                <div class="card-desc">Fuel Economy</div>
-            </a>
-            <a href="transportation/car-maintenance.html" class="card">
-                <div class="card-icon">🔧</div>
-                <div class="card-title">Car Maintenance</div>
-                <div class="card-desc">Service Cost</div>
-            </a>
-            <a href="transportation/flight-mileage.html" class="card">
-                <div class="card-icon">🛫</div>
-                <div class="card-title">Flight Mileage</div>
-                <div class="card-desc">Miles Calculator</div>
-            </a>
-            <a href="transportation/flight-ticket.html" class="card">
-                <div class="card-icon">🎫</div>
-                <div class="card-title">Flight Ticket</div>
-                <div class="card-desc">Airline Fees</div>
-            </a>
-            <a href="transportation/commute-cost.html" class="card">
-                <div class="card-icon">🚇</div>
-                <div class="card-title">Commute Cost</div>
-                <div class="card-desc">Daily Transport</div>
-            </a>
-        </div>
-    </div>
+            emptyState.style.display = matchCount === 0 ? "block" : "none";
+        };
 
-    <!-- Entertainment -->
-    <div class="category">
-        <h2 class="category-title"><span class="icon">🎮</span> Entertainment</h2>
-        <div class="cards-grid">
-            <a href="entertainment/lucky-number.html" class="card">
-                <div class="card-icon">🍀</div>
-                <div class="card-title">Lucky Number</div>
-                <div class="card-desc">Random Fortune</div>
-            </a>
-            <a href="entertainment/love-compatibility.html" class="card">
-                <div class="card-icon">💕</div>
-                <div class="card-title">Love Compatibility</div>
-                <div class="card-desc">Name Match</div>
-            </a>
-            <a href="entertainment/lottery-prob.html" class="card">
-                <div class="card-icon">🎰</div>
-                <div class="card-title">Lottery Probability</div>
-                <div class="card-desc">Win Chance</div>
-            </a>
-            <a href="entertainment/lucky-color.html" class="card">
-                <div class="card-icon">🌈</div>
-                <div class="card-title">Lucky Color</div>
-                <div class="card-desc">Daily Fortune</div>
-            </a>
-            <a href="entertainment/red-packet.html" class="card">
-                <div class="card-icon">🧧</div>
-                <div class="card-title">Red Packet</div>
-                <div class="card-desc">Chinese New Year</div>
-            </a>
-        </div>
-    </div>
-    
-    <footer style="text-align:center;padding:20px;font-size:12px;color:#888;border-top:1px solid #eee;margin-top:40px;">
-        <p>AI-assisted project &bull; Built with <a href="https://opencode.ai" target="_blank" style="color:#888;text-decoration:underline;">opencode</a></p>
-    </footer>
+        searchInput.addEventListener("input", updateResults);
+        clearButton.addEventListener("click", () => {
+            searchInput.value = "";
+            updateResults();
+            searchInput.focus();
+        });
+
+        const params = new URLSearchParams(window.location.search);
+        const initialQuery = params.get("q");
+        if (initialQuery) {
+            searchInput.value = initialQuery;
+        }
+        updateResults();
+    </script>
 </body>
 </html>
